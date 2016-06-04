@@ -7,13 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8419221E1CFE733C00B9ED17 /* Appstate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419221D1CFE733C00B9ED17 /* Appstate.swift */; };
+		841922221CFE740700B9ED17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841922211CFE740700B9ED17 /* Constants.swift */; };
+		841922241CFE749D00B9ED17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841922231CFE749D00B9ED17 /* Main.storyboard */; };
+		841922261CFE750F00B9ED17 /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841922251CFE750F00B9ED17 /* MeasurementHelper.swift */; };
+		841922281CFE75E900B9ED17 /* FCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841922271CFE75E900B9ED17 /* FCViewController.swift */; };
+		8419222E1CFE7F3900B9ED17 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */; };
 		84AED8281CFE6F0F008909F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED8271CFE6F0F008909F3 /* AppDelegate.swift */; };
-		84AED82A1CFE6F0F008909F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED8291CFE6F0F008909F3 /* ViewController.swift */; };
-		84AED82D1CFE6F0F008909F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AED82B1CFE6F0F008909F3 /* Main.storyboard */; };
 		84AED82F1CFE6F0F008909F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AED82E1CFE6F0F008909F3 /* Assets.xcassets */; };
 		84AED8321CFE6F0F008909F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AED8301CFE6F0F008909F3 /* LaunchScreen.storyboard */; };
 		84AED83D1CFE6F0F008909F3 /* Chatty_McChatfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED83C1CFE6F0F008909F3 /* Chatty_McChatfaceTests.swift */; };
 		84AED8481CFE6F0F008909F3 /* Chatty_McChatfaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED8471CFE6F0F008909F3 /* Chatty_McChatfaceUITests.swift */; };
+		84AED8561CFE6FD8008909F3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED8551CFE6FD8008909F3 /* SignInViewController.swift */; };
+		84E839251CFE86B4004102CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84E839241CFE86B4004102CF /* GoogleService-Info.plist */; };
+		84E839271CFE87DB004102CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E839261CFE87DB004102CF /* Images.xcassets */; };
+		84FA5A171D01B136006D5E1F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A161D01B136006D5E1F /* Utilities.swift */; };
+		DA39BC8AEF90F4B6512E9D8E /* Pods_Chatty_McChatface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45C50636E82A5EF989478E5 /* Pods_Chatty_McChatface.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0168C9B0596E0F4DC91BB6CB /* Pods-Chatty McChatface.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatty McChatface.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatty McChatface/Pods-Chatty McChatface.release.xcconfig"; sourceTree = "<group>"; };
+		8419221D1CFE733C00B9ED17 /* Appstate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appstate.swift; sourceTree = "<group>"; };
+		841922211CFE740700B9ED17 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		841922231CFE749D00B9ED17 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		841922251CFE750F00B9ED17 /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasurementHelper.swift; path = ../MeasurementHelper.swift; sourceTree = "<group>"; };
+		841922271CFE75E900B9ED17 /* FCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCViewController.swift; sourceTree = "<group>"; };
+		8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		84AED8241CFE6F0F008909F3 /* Chatty McChatface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty McChatface.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AED8271CFE6F0F008909F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84AED8291CFE6F0F008909F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		84AED82C1CFE6F0F008909F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84AED82E1CFE6F0F008909F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84AED8311CFE6F0F008909F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84AED8331CFE6F0F008909F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +61,12 @@
 		84AED8431CFE6F0F008909F3 /* Chatty McChatfaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chatty McChatfaceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AED8471CFE6F0F008909F3 /* Chatty_McChatfaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatty_McChatfaceUITests.swift; sourceTree = "<group>"; };
 		84AED8491CFE6F0F008909F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84AED8551CFE6FD8008909F3 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		84E839241CFE86B4004102CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84E839261CFE87DB004102CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		84FA5A161D01B136006D5E1F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B45C50636E82A5EF989478E5 /* Pods_Chatty_McChatface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatty_McChatface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFBB48D5C71D96B9587DF67E /* Pods-Chatty McChatface.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatty McChatface.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatty McChatface/Pods-Chatty McChatface.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA39BC8AEF90F4B6512E9D8E /* Pods_Chatty_McChatface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E2408F8112CCE6569C0B020 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B45C50636E82A5EF989478E5 /* Pods_Chatty_McChatface.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84AED81B1CFE6F0F008909F3 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +110,8 @@
 				84AED83B1CFE6F0F008909F3 /* Chatty McChatfaceTests */,
 				84AED8461CFE6F0F008909F3 /* Chatty McChatfaceUITests */,
 				84AED8251CFE6F0F008909F3 /* Products */,
+				91B89BC46827261C8D47E8B9 /* Pods */,
+				7E2408F8112CCE6569C0B020 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +129,19 @@
 			isa = PBXGroup;
 			children = (
 				84AED8271CFE6F0F008909F3 /* AppDelegate.swift */,
-				84AED8291CFE6F0F008909F3 /* ViewController.swift */,
-				84AED82B1CFE6F0F008909F3 /* Main.storyboard */,
+				84AED8551CFE6FD8008909F3 /* SignInViewController.swift */,
+				841922271CFE75E900B9ED17 /* FCViewController.swift */,
+				8419221D1CFE733C00B9ED17 /* Appstate.swift */,
+				841922251CFE750F00B9ED17 /* MeasurementHelper.swift */,
+				84FA5A161D01B136006D5E1F /* Utilities.swift */,
+				841922231CFE749D00B9ED17 /* Main.storyboard */,
 				84AED82E1CFE6F0F008909F3 /* Assets.xcassets */,
+				84E839261CFE87DB004102CF /* Images.xcassets */,
+				8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */,
 				84AED8301CFE6F0F008909F3 /* LaunchScreen.storyboard */,
+				84E839241CFE86B4004102CF /* GoogleService-Info.plist */,
 				84AED8331CFE6F0F008909F3 /* Info.plist */,
+				841922211CFE740700B9ED17 /* Constants.swift */,
 			);
 			path = "Chatty McChatface";
 			sourceTree = "<group>";
@@ -125,6 +164,15 @@
 			path = "Chatty McChatfaceUITests";
 			sourceTree = "<group>";
 		};
+		91B89BC46827261C8D47E8B9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CFBB48D5C71D96B9587DF67E /* Pods-Chatty McChatface.debug.xcconfig */,
+				0168C9B0596E0F4DC91BB6CB /* Pods-Chatty McChatface.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84AED84C1CFE6F0F008909F3 /* Build configuration list for PBXNativeTarget "Chatty McChatface" */;
 			buildPhases = (
+				B7299359B8CD5B0D08A12CCA /* 📦 Check Pods Manifest.lock */,
 				84AED8201CFE6F0F008909F3 /* Sources */,
 				84AED8211CFE6F0F008909F3 /* Frameworks */,
 				84AED8221CFE6F0F008909F3 /* Resources */,
+				975581FA7913A166A6EA0190 /* 📦 Embed Pods Frameworks */,
+				09F4DC9225E8C142ADF7FAD5 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +244,7 @@
 				TargetAttributes = {
 					84AED8231CFE6F0F008909F3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = UUCF9CV25S;
 					};
 					84AED8371CFE6F0F008909F3 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -229,9 +281,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8419222E1CFE7F3900B9ED17 /* LaunchScreen.xib in Resources */,
 				84AED8321CFE6F0F008909F3 /* LaunchScreen.storyboard in Resources */,
+				84E839251CFE86B4004102CF /* GoogleService-Info.plist in Resources */,
+				84E839271CFE87DB004102CF /* Images.xcassets in Resources */,
+				841922241CFE749D00B9ED17 /* Main.storyboard in Resources */,
 				84AED82F1CFE6F0F008909F3 /* Assets.xcassets in Resources */,
-				84AED82D1CFE6F0F008909F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +306,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09F4DC9225E8C142ADF7FAD5 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chatty McChatface/Pods-Chatty McChatface-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		975581FA7913A166A6EA0190 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chatty McChatface/Pods-Chatty McChatface-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7299359B8CD5B0D08A12CCA /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84AED8201CFE6F0F008909F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84AED82A1CFE6F0F008909F3 /* ViewController.swift in Sources */,
+				841922221CFE740700B9ED17 /* Constants.swift in Sources */,
+				841922261CFE750F00B9ED17 /* MeasurementHelper.swift in Sources */,
+				84FA5A171D01B136006D5E1F /* Utilities.swift in Sources */,
+				84AED8561CFE6FD8008909F3 /* SignInViewController.swift in Sources */,
 				84AED8281CFE6F0F008909F3 /* AppDelegate.swift in Sources */,
+				841922281CFE75E900B9ED17 /* FCViewController.swift in Sources */,
+				8419221E1CFE733C00B9ED17 /* Appstate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +401,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		84AED82B1CFE6F0F008909F3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84AED82C1CFE6F0F008909F3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		84AED8301CFE6F0F008909F3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -399,8 +499,10 @@
 		};
 		84AED84D1CFE6F0F008909F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFBB48D5C71D96B9587DF67E /* Pods-Chatty McChatface.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Chatty McChatface/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "idewerks.Chatty-McChatface";
@@ -410,8 +512,10 @@
 		};
 		84AED84E1CFE6F0F008909F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0168C9B0596E0F4DC91BB6CB /* Pods-Chatty McChatface.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Chatty McChatface/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "idewerks.Chatty-McChatface";
@@ -484,6 +588,7 @@
 				84AED84E1CFE6F0F008909F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84AED84F1CFE6F0F008909F3 /* Build configuration list for PBXNativeTarget "Chatty McChatfaceTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +597,7 @@
 				84AED8511CFE6F0F008909F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84AED8521CFE6F0F008909F3 /* Build configuration list for PBXNativeTarget "Chatty McChatfaceUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +606,7 @@
 				84AED8541CFE6F0F008909F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
