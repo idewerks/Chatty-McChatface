@@ -27,6 +27,9 @@ let kBannerAdUnitID = "ca-app-pub-3940256099942544/2934735716"
 class FCViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
 UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
+  @IBOutlet weak var CellTitleText: UILabel!
+  @IBOutlet weak var CellMessageText: UILabel!
+ 
   // Instance variables
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var sendButton: UIButton!
@@ -40,6 +43,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   @IBOutlet weak var banner: GADBannerView!
   @IBOutlet weak var clientTable: UITableView!
+  
+  
+  
    //___________________________________________________________________________________________
   @IBAction func didSendMessage(sender: UIButton) {
     textFieldShouldReturn(textField)
@@ -75,7 +81,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     remoteConfig.configSettings = remoteConfigSettings!
     
     loadAd()
+    //self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+  
     self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+    
+    
     fetchConfig()
     configureStorage()
     
@@ -151,7 +161,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
       self.messages.append(snapshot)
       self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
-     //self.scrollToLastRow()
+     self.scrollToLastRow()
       
     })
   }
@@ -171,7 +181,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
  //___________________________________________________________________________________________
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Dequeue cell
-    let cell: UITableViewCell! = self.clientTable .dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
+    /*let cell: UITableViewCell! = self.clientTable .dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)*/
+    
+    let cell: UITableViewCell! = self.clientTable.dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
+    
+    
     // Unpack message from Firebase DataSnapshot
     let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
     let message = messageSnapshot.value as! Dictionary<String, String>
@@ -194,11 +208,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       cell!.textLabel?.text = "media: \(name)"
     } else {
       let text = message[Constants.MessageFields.text] as String!
-      cell!.textLabel?.text = name + ": " + text
-      cell!.textLabel?.sizeToFit()
-      cell!.imageView?.image = UIImage(named: "ic_account_circle")
+      cell.textLabel?.text = name + ": " + text
+      cell.textLabel?.sizeToFit()
+      cell.imageView?.image = UIImage(named: "ic_account_circle")
       if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string:photoUrl), data = NSData(contentsOfURL: url) {
-        cell!.imageView?.image = UIImage(data: data)
+        cell.imageView?.image = UIImage(data: data)
       }
     }
    //scrollToLastRow()
@@ -303,3 +317,5 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   }
   
 }
+
+
