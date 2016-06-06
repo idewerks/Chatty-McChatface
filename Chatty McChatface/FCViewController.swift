@@ -131,7 +131,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
         print("Config fetched!")
         self.remoteConfig.activateFetched()
         self.msglength = self.remoteConfig["chatty_msg_length"].numberValue!
-        print("Friendly msg length config: \(self.msglength)")
+        print(" msg length config: \(self.msglength)")
       } else {
         print("Config not fetched")
         print("Error \(error)")
@@ -181,12 +181,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
  //___________________________________________________________________________________________
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Dequeue cell
-    /*let cell: UITableViewCell! = self.clientTable .dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)*/
+    let cell: UITableViewCell! = self.clientTable .dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
+    //let cell: UITableViewCell! = self.clientTable .dequeueReusableCellWithIdentifier("ClientCell", forIndexPath: indexPath)
     
-    let cell: UITableViewCell! = self.clientTable.dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
     
-    
-    // Unpack message from Firebase DataSnapshot
+    // Unpack message from Firebase DataSnapshot---------------------------------------------
     let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
     let message = messageSnapshot.value as! Dictionary<String, String>
     let name = message[Constants.MessageFields.name] as String!
@@ -197,6 +196,14 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             print("Error downloading: \(error)")
             return
           }
+          
+    // Done unpacking Firebase data ----------------------------------------------------------
+          
+  
+          
+         
+          
+          
           cell.imageView?.image = UIImage.init(data: data!)
         }
       } else if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
