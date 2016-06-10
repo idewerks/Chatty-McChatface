@@ -27,15 +27,15 @@ let kBannerAdUnitID = "ca-app-pub-3940256099942544/2934735716"
 class FCViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
 UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
-  @IBOutlet weak var CellTitleText: UILabel!
-  @IBOutlet weak var CellMessageText: UILabel!
+  //@IBOutlet weak var CellTitleText: UILabel!
+  //@IBOutlet weak var CellMessageText: UILabel!
  
   // Instance variables
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var sendButton: UIButton!
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
-  var msglength: NSNumber = 10
+  var msglength: NSNumber = 128
   private var _refHandle: FIRDatabaseHandle!
   
   var storageRef: FIRStorageReference!
@@ -43,8 +43,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   @IBOutlet weak var banner: GADBannerView!
   @IBOutlet weak var clientTable: UITableView!
+ /// @IBOutlet weak var ClientCell: UITableViewCell!
   
+  //@IBOutlet var ClientCell: [UITableViewCell]!
   
+  //@IBOutlet weak var ClientCell: UITableViewCell!
   
    //___________________________________________________________________________________________
   @IBAction func didSendMessage(sender: UIButton) {
@@ -82,9 +85,29 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     
     loadAd()
     //self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
-  
-    self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+  //----------------added
     
+    
+   // self.clientTable.estimatedRowHeight = 80
+    //self.clientTable.rowHeight = UITableViewAutomaticDimension
+    
+    //self.clientTable.setNeedsLayout()
+    //self.clientTable.layoutIfNeeded()
+    
+    //self.clientTable.contentInset = UIEdgeInsetsMake(20, 0, 0, 0) // Status bar inset
+    
+    
+    
+   self.clientTable.estimatedRowHeight = 40
+    self.clientTable.rowHeight = UITableViewAutomaticDimension
+    
+    
+    
+    //--------------
+//    self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+    
+    //self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+   
     
     fetchConfig()
     configureStorage()
@@ -154,8 +177,14 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   override func viewWillAppear(animated: Bool) {
    // self.clientTable.cell
+    
+    
+    
     self.clientTable.estimatedRowHeight = 40
     self.clientTable.rowHeight = UITableViewAutomaticDimension
+    
+    
+    
     self.messages.removeAll()
     self.clientTable.reloadData()    // Listen for new messages in the Firebase database
     _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
@@ -181,15 +210,16 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
  //___________________________________________________________________________________________
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Dequeue cell
-    let cell: UITableViewCell! = self.clientTable .dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
-    //let cell: UITableViewCell! = self.clientTable .dequeueReusableCellWithIdentifier("ClientCell", forIndexPath: indexPath)
-    
-    
+    let cell = self.clientTable .dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageCell
+ 
     // Unpack message from Firebase DataSnapshot---------------------------------------------
     let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
     let message = messageSnapshot.value as! Dictionary<String, String>
     let name = message[Constants.MessageFields.name] as String!
+    // Done unpacking Firebase data ----------------------------------------------------------
+    
     if let imageUrl = message[Constants.MessageFields.imageUrl] {
+      
       if imageUrl.hasPrefix("gs://") {
         FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(INT64_MAX){ (data, error) in
           if let error = error {
@@ -197,35 +227,53 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             return
           }
           
-    // Done unpacking Firebase data ----------------------------------------------------------
           
-  
-          
-         
-          
+      //cell.CellMessageLabel.numberOfLines=0
+      //cell.CellMessageLabel.sizeToFit()
           
           cell.imageView?.image = UIImage.init(data: data!)
         }
       } else if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
         cell.imageView?.image = UIImage.init(data: data)
       }
-     // cell!.textLabel?.numberOfLines = 0
-     // cell!.textLabel?.sizeToFit()
-      
-      cell!.textLabel?.text = "media: \(name)"
+
+      cell.CellMessageLabel.text = "media message"
     } else {
       let text = message[Constants.MessageFields.text] as String!
-      cell.textLabel?.text = name + ": " + text
-      cell.textLabel?.sizeToFit()
+   
+      
+      cell.CellMessageLabel.text=text
+      cell.CellTitleLabel.text = name
+      
+      //cell.textLabel?.text = name + ": " + text
+   
       cell.imageView?.image = UIImage(named: "ic_account_circle")
       if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string:photoUrl), data = NSData(contentsOfURL: url) {
         cell.imageView?.image = UIImage(data: data)
       }
     }
    //scrollToLastRow()
-    return cell!
+    return cell
     
   }
+  //-------------------------methods for autosize
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
+  }
+  
+  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
+  }
+  //-----------------------------------------
+  
+  
+  
+  
+  
+  
+  
+  
+  
   //___________________________________________________________________________________________
   func scrollToLastRow() {
    let indexPath = NSIndexPath(forRow: messages.count - 1, inSection: 0)
@@ -281,7 +329,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
       
       //Note: Changed Int to Int64 in next line as floating to Int is > Int.max
-      let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int64(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
+      let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(Int64(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
       self.storageRef.child(filePath)
@@ -323,6 +371,13 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     }
   }
   
-}
 
+}
+class MessageCell: UITableViewCell {
+  
+  
+  @IBOutlet weak var CellTitleLabel: UILabel!
+  
+  @IBOutlet weak var CellMessageLabel: UILabel!
+}
 

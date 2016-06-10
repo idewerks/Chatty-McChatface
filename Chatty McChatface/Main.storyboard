@@ -168,10 +168,10 @@
                                             <action selector="didPressFreshConfig:" destination="uMT-A3-F60" eventType="touchUpInside" id="Sc1-ex-uRq"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chatty McChatface" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUI-XH-ETH">
-                                        <rect key="frame" x="-29" y="2" width="258" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatty McChatface" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUI-XH-ETH">
+                                        <rect key="frame" x="-29" y="2" width="258" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="K4h-1Y-mSS"/>
+                                            <constraint firstAttribute="width" constant="258" id="K4h-1Y-mSS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -184,9 +184,9 @@
                                     <constraint firstItem="6uD-8t-BBQ" firstAttribute="centerY" secondItem="VRr-Ou-qfp" secondAttribute="centerY" id="Cja-2X-Ezj"/>
                                     <constraint firstItem="Vlk-XX-9Qp" firstAttribute="top" secondItem="VRr-Ou-qfp" secondAttribute="top" constant="16" id="FH2-nM-DGh"/>
                                     <constraint firstItem="6uD-8t-BBQ" firstAttribute="leading" secondItem="bzG-Ms-LOb" secondAttribute="trailing" constant="29" id="Nj0-ch-53y"/>
-                                    <constraint firstItem="CUI-XH-ETH" firstAttribute="top" secondItem="VRr-Ou-qfp" secondAttribute="top" constant="3" id="Stl-Ss-p7a"/>
+                                    <constraint firstItem="CUI-XH-ETH" firstAttribute="top" secondItem="VRr-Ou-qfp" secondAttribute="top" constant="2" id="Stl-Ss-p7a"/>
                                     <constraint firstItem="6uD-8t-BBQ" firstAttribute="top" secondItem="VRr-Ou-qfp" secondAttribute="top" constant="10" id="cKq-aI-Vqd"/>
-                                    <constraint firstItem="CUI-XH-ETH" firstAttribute="leading" secondItem="VRr-Ou-qfp" secondAttribute="leading" id="eXU-6q-3fR"/>
+                                    <constraint firstItem="CUI-XH-ETH" firstAttribute="leading" secondItem="VRr-Ou-qfp" secondAttribute="leading" constant="-29" id="eXU-6q-3fR"/>
                                     <constraint firstAttribute="trailing" secondItem="6uD-8t-BBQ" secondAttribute="trailing" constant="4" id="iX3-rZ-9ou"/>
                                     <constraint firstItem="6uD-8t-BBQ" firstAttribute="leading" secondItem="Vlk-XX-9Qp" secondAttribute="trailing" constant="8" symbolic="YES" id="js5-pa-pA6"/>
                                     <constraint firstAttribute="height" constant="40" id="lcD-f1-KBk"/>
@@ -205,10 +205,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STK-FK-gn5" userLabel="TextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STK-FK-gn5" userLabel="TextField">
                                 <rect key="frame" x="48" y="500" width="482" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardType="twitter"/>
                                 <connections>
                                     <outlet property="delegate" destination="uMT-A3-F60" id="5FI-zi-SaF"/>
                                 </connections>
@@ -245,38 +245,65 @@
                                 <rect key="frame" x="16" y="68" width="568" height="424"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ClientCell" id="f9j-WJ-CnU" customClass="ClientCell" customModule="Chatty_McChatface" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" id="f9j-WJ-CnU" customClass="MessageCell" customModule="Chatty_McChatface" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="568" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9j-WJ-CnU" id="6Nv-bs-fSR">
                                             <rect key="frame" x="0.0" y="0.0" width="568" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CellTitleText" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INx-Jc-1nD">
-                                                    <rect key="frame" x="20" y="0.0" width="280" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McS-zO-nWA">
+                                                    <rect key="frame" x="70" y="33" width="440" height="16"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="CellMessageText ">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CellMessageText" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McS-zO-nWA">
-                                                    <rect key="frame" x="20" y="23" width="280" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INx-Jc-1nD">
+                                                    <rect key="frame" x="70" y="5" width="478" height="26"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="CellTitleText">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="INx-Jc-1nD" secondAttribute="trailing" constant="20" id="H8v-E0-0XE"/>
-                                                <constraint firstItem="McS-zO-nWA" firstAttribute="top" secondItem="INx-Jc-1nD" secondAttribute="bottom" constant="20" id="Kqu-nv-zMt"/>
-                                                <constraint firstItem="McS-zO-nWA" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="20" id="Vw5-R8-9Nd"/>
-                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="topMargin" constant="20" id="XiD-RI-jNL"/>
-                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" constant="20" id="sCX-fg-dNs"/>
-                                                <constraint firstAttribute="trailing" secondItem="McS-zO-nWA" secondAttribute="trailing" constant="20" id="vFe-IP-e4Q"/>
+                                                <constraint firstItem="McS-zO-nWA" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="70" id="1az-24-qIM"/>
+                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="70" id="U0o-7D-Qh3"/>
+                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="5" id="VMn-6d-hLd"/>
+                                                <constraint firstAttribute="trailing" secondItem="INx-Jc-1nD" secondAttribute="trailing" constant="20" id="Wdj-gV-NRD"/>
+                                                <constraint firstAttribute="bottom" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="1" id="WuK-rT-z4d"/>
+                                                <constraint firstAttribute="trailing" secondItem="McS-zO-nWA" secondAttribute="trailing" constant="58" id="fvC-DJ-2Zv"/>
+                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="5" id="l54-td-ycN"/>
+                                                <constraint firstItem="McS-zO-nWA" firstAttribute="top" secondItem="INx-Jc-1nD" secondAttribute="bottom" constant="2" id="wr5-gT-Fnh"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="VMn-6d-hLd"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="CellMessageText" destination="McS-zO-nWA" id="Nol-Z2-R6k"/>
-                                            <outlet property="CellTitleText" destination="INx-Jc-1nD" id="vZB-sb-Uyf"/>
+                                            <outlet property="CellMessageLabel" destination="McS-zO-nWA" id="MST-f4-0YL"/>
+                                            <outlet property="CellTitleLabel" destination="INx-Jc-1nD" id="hCj-14-PN2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
