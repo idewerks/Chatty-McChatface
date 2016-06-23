@@ -130,21 +130,21 @@
 		84AED8261CFE6F0F008909F3 /* Chatty McChatface */ = {
 			isa = PBXGroup;
 			children = (
-				8465F9321D0902BC0053EE84 /* MessageCell.swift */,
-				84AED8271CFE6F0F008909F3 /* AppDelegate.swift */,
-				84AED8551CFE6FD8008909F3 /* SignInViewController.swift */,
-				841922271CFE75E900B9ED17 /* FCViewController.swift */,
-				8419221D1CFE733C00B9ED17 /* Appstate.swift */,
-				841922251CFE750F00B9ED17 /* MeasurementHelper.swift */,
-				84FA5A161D01B136006D5E1F /* Utilities.swift */,
 				841922231CFE749D00B9ED17 /* Main.storyboard */,
-				84AED82E1CFE6F0F008909F3 /* Assets.xcassets */,
-				84E839261CFE87DB004102CF /* Images.xcassets */,
 				8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */,
 				84AED8301CFE6F0F008909F3 /* LaunchScreen.storyboard */,
+				84AED8271CFE6F0F008909F3 /* AppDelegate.swift */,
+				8419221D1CFE733C00B9ED17 /* Appstate.swift */,
+				84AED8551CFE6FD8008909F3 /* SignInViewController.swift */,
+				841922271CFE75E900B9ED17 /* FCViewController.swift */,
+				8465F9321D0902BC0053EE84 /* MessageCell.swift */,
+				841922251CFE750F00B9ED17 /* MeasurementHelper.swift */,
+				84FA5A161D01B136006D5E1F /* Utilities.swift */,
+				841922211CFE740700B9ED17 /* Constants.swift */,
+				84AED82E1CFE6F0F008909F3 /* Assets.xcassets */,
+				84E839261CFE87DB004102CF /* Images.xcassets */,
 				84E839241CFE86B4004102CF /* GoogleService-Info.plist */,
 				84AED8331CFE6F0F008909F3 /* Info.plist */,
-				841922211CFE740700B9ED17 /* Constants.swift */,
 			);
 			path = "Chatty McChatface";
 			sourceTree = "<group>";

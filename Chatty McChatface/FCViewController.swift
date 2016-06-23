@@ -27,15 +27,14 @@ let kBannerAdUnitID = "ca-app-pub-3940256099942544/2934735716"
 class FCViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
 UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
-  //@IBOutlet weak var CellTitleText: UILabel!
-  //@IBOutlet weak var CellMessageText: UILabel!
+ 
  
   // Instance variables
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var sendButton: UIButton!
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
-  var msglength: NSNumber = 128
+  var msglength: NSNumber = 500
   private var _refHandle: FIRDatabaseHandle!
   
   var storageRef: FIRStorageReference!
@@ -43,21 +42,14 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   @IBOutlet weak var banner: GADBannerView!
   @IBOutlet weak var clientTable: UITableView!
- /// @IBOutlet weak var ClientCell: UITableViewCell!
-  
-  //@IBOutlet var ClientCell: [UITableViewCell]!
-  
-  //@IBOutlet weak var ClientCell: UITableViewCell!
+ 
   
    //___________________________________________________________________________________________
   @IBAction func didSendMessage(sender: UIButton) {
     textFieldShouldReturn(textField)
     textField.text=""//clear the text box
     dismissKeyboard() //hide the keyboard
-    //
-    
-    //self.scrollToLastRow()
-  }
+     }
    //___________________________________________________________________________________________
   @IBAction func didPressCrash(sender: AnyObject) {
     FIRCrashMessage("Cause Crash button clicked")
@@ -66,8 +58,6 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   @IBAction func didPressFreshConfig(sender: AnyObject) {
     fetchConfig()
   }
-  
-  
    //___________________________________________________________________________________________
   
   override func viewDidLoad() {
@@ -84,30 +74,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     remoteConfig.configSettings = remoteConfigSettings!
     
     loadAd()
-    //self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
-  //----------------added
     
-    
-   // self.clientTable.estimatedRowHeight = 80
-    //self.clientTable.rowHeight = UITableViewAutomaticDimension
-    
-    //self.clientTable.setNeedsLayout()
-    //self.clientTable.layoutIfNeeded()
-    
-    //self.clientTable.contentInset = UIEdgeInsetsMake(20, 0, 0, 0) // Status bar inset
-    
-    
-    
-   self.clientTable.estimatedRowHeight = 40
+    self.clientTable.estimatedRowHeight = 40
     self.clientTable.rowHeight = UITableViewAutomaticDimension
-    
-    
-    
-    //--------------
-//    self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
-    
-    //self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
-   
     
     fetchConfig()
     configureStorage()
@@ -176,23 +145,46 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
    //___________________________________________________________________________________________
   
   override func viewWillAppear(animated: Bool) {
-   // self.clientTable.cell
-    
-    
     
     self.clientTable.estimatedRowHeight = 40
     self.clientTable.rowHeight = UITableViewAutomaticDimension
-    
-    
-    
     self.messages.removeAll()
     self.clientTable.reloadData()    // Listen for new messages in the Firebase database
+    
+    //This fires when a new message is added
     _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+      //add snapshot of next message to be appended to messages object(FIRdata snapshot object)
       self.messages.append(snapshot)
+      //add another row to the clientTable (UITableView Object)
       self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
      self.scrollToLastRow()
       
     })
+    
+    // Listen for deleted messages in the Firebase database- should fire when user deletes message
+ /*   _refHandle = self.ref.child("messages").observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
+     // let messageItem = self.messages[indexPath.row]
+      
+      
+      let messageToDelete=self.indexOfMessage(snapshot)
+          self.messages.removeAtIndex(messageToDelete)//remove from tableview
+      //self.clientTable.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Automatic)
+    })*/
+    
+    
+    
+  }
+  
+  
+  func indexOfMessage(snapshot: FIRDataSnapshot) -> Int {
+    var index = 0
+    for  message in self.messages {
+      if (snapshot.key == message.key) {
+        return index
+      }
+      index += 1
+    }
+    return -1
   }
    //___________________________________________________________________________________________
   
@@ -218,42 +210,54 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     let name = message[Constants.MessageFields.name] as String!
     // Done unpacking Firebase data ----------------------------------------------------------
     
+    
+    
+    //This block decodes an imageURL which is an embedded photo
+    //imageUrl is the storage field used for a media(photo) item
+    //photoUrl is the storage field used for avatars
+    
+    
     if let imageUrl = message[Constants.MessageFields.imageUrl] {
-      
-      if imageUrl.hasPrefix("gs://") {
-        FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(INT64_MAX){ (data, error) in
-          if let error = error {
-            print("Error downloading: \(error)")
-            return
-          }
+      //message contains an embedded image
+          if imageUrl.hasPrefix("gs://") {
+            //message is stored in firebase storage
+        
+            //get image from firebase storage
+            FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(INT64_MAX){ (data, error) in
+              if let error = error {
+                  print("Error downloading: \(error)")
+                  return
+                  }
           
           
-      //cell.CellMessageLabel.numberOfLines=0
-      //cell.CellMessageLabel.sizeToFit()
+                //This fires when download of image is complete
+                //move image to cell
+         
+                  cell.imageView?.image = UIImage.init(data: data!)
+                  cell.CellTitleLabel.text = name
           
-          cell.imageView?.image = UIImage.init(data: data!)
-        }
-      } else if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
-        cell.imageView?.image = UIImage.init(data: data)
-      }
-
-      cell.CellMessageLabel.text = "media message"
+                    }//end get image from firebase storage
+        
+        
+        
+              //if not stored in firebase storage, retrieve image from web url
+            } else if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
+              cell.imageView?.image = UIImage.init(data: data)
+            }
+              cell.CellTitleLabel.text = name
+              cell.CellMessageLabel.text = "media message"
     } else {
-      let text = message[Constants.MessageFields.text] as String!
-   
+              //if no imageUrl field in message, treat it as a text message:
       
-      cell.CellMessageLabel.text=text
-      cell.CellTitleLabel.text = name
-      
-      //cell.textLabel?.text = name + ": " + text
-   
-      cell.imageView?.image = UIImage(named: "ic_account_circle")
-      if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string:photoUrl), data = NSData(contentsOfURL: url) {
-        cell.imageView?.image = UIImage(data: data)
-      }
-    }
-   //scrollToLastRow()
-    return cell
+              let text = message[Constants.MessageFields.text] as String!
+              cell.CellMessageLabel.text=text
+              cell.CellTitleLabel.text = name
+              cell.imageView?.image = UIImage(named: "ic_account_circle")
+              if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string:photoUrl), data = NSData(contentsOfURL: url) {
+                  cell.imageView?.image = UIImage(data: data)
+              }
+            }
+              return cell
     
   }
   //-------------------------methods for autosize
@@ -266,8 +270,26 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   }
   //-----------------------------------------
   
+  //swipe to delete method
+  //note this has to be done programmatically. During compilation xcode checks for existence of this method, and if available, enables swipe to delete functionality
   
-  
+   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == .Delete {
+    print(indexPath)
+      
+     let messageToDelete = messages[indexPath.row]
+        messages.removeAtIndex(indexPath.row)
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      messageToDelete.ref.removeValue()
+      self.scrollToLastRow()
+      
+      
+      
+      
+    } else if editingStyle == .Insert {
+      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+      }
+  }
   
   
   
