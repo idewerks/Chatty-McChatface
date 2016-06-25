@@ -34,7 +34,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   @IBOutlet weak var sendButton: UIButton!
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
-  var msglength: NSNumber = 500
+  var msglength: NSNumber = 25
   private var _refHandle: FIRDatabaseHandle!
   
   var storageRef: FIRStorageReference!
@@ -74,6 +74,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     remoteConfig.configSettings = remoteConfigSettings!
     
     loadAd()
+    //self.clientTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "MessageCell")
     
     self.clientTable.estimatedRowHeight = 40
     self.clientTable.rowHeight = UITableViewAutomaticDimension
@@ -99,6 +100,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   func keyboardWillHide(sender: NSNotification) {
     self.view.frame.origin.y = 0
   }
+  
+  
+  
+  
+  
   //--------------------------------------------------------
   func loadAd() {
     self.banner.adUnitID = kBannerAdUnitID
@@ -161,21 +167,10 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
     })
     
-    // Listen for deleted messages in the Firebase database- should fire when user deletes message
- /*   _refHandle = self.ref.child("messages").observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
-     // let messageItem = self.messages[indexPath.row]
-      
-      
-      let messageToDelete=self.indexOfMessage(snapshot)
-          self.messages.removeAtIndex(messageToDelete)//remove from tableview
-      //self.clientTable.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Automatic)
-    })*/
-    
-    
     
   }
   
-  
+  //-----------------------------------------------------------------------------------------
   func indexOfMessage(snapshot: FIRDataSnapshot) -> Int {
     var index = 0
     for  message in self.messages {
@@ -199,11 +194,18 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return messages.count
   }
+  
+  
+  
+  
+  
+  
+  
  //___________________________________________________________________________________________
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // Dequeue cell
+        // Create a cell
     let cell = self.clientTable .dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageCell
- 
+    
     // Unpack message from Firebase DataSnapshot---------------------------------------------
     let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
     let message = messageSnapshot.value as! Dictionary<String, String>
@@ -218,31 +220,41 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     
     
     if let imageUrl = message[Constants.MessageFields.imageUrl] {
-      //message contains an embedded image
+      //message contains an embedded image media url
+      
+      //check to see if it has a firebase storage url prefix
           if imageUrl.hasPrefix("gs://") {
             //message is stored in firebase storage
         
             //get image from firebase storage
+            
+            //async method returns object or error- exits at completion of media retrieval
             FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(INT64_MAX){ (data, error) in
               if let error = error {
                   print("Error downloading: \(error)")
                   return
+                
                   }
           
           
                 //This fires when download of image is complete
                 //move image to cell
-         
-                  cell.imageView?.image = UIImage.init(data: data!)
+                  print("download of fb storage image complete")
+              
+              
+              cell.CellLeftImage?.image = UIImage.init(data: data!)
+                  //cell.imageView?.image = UIImage.init(data: data!)
                   cell.CellTitleLabel.text = name
           
                     }//end get image from firebase storage
-        
-        
+        return cell
+            
         
               //if not stored in firebase storage, retrieve image from web url
             } else if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
-              cell.imageView?.image = UIImage.init(data: data)
+              //cell.imageView?.image = UIImage.init(data: data)
+            cell.CellLeftImage?.image = UIImage.init(data: data)
+            
             }
               cell.CellTitleLabel.text = name
               cell.CellMessageLabel.text = "media message"
@@ -252,19 +264,28 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
               let text = message[Constants.MessageFields.text] as String!
               cell.CellMessageLabel.text=text
               cell.CellTitleLabel.text = name
-              cell.imageView?.image = UIImage(named: "ic_account_circle")
+      //cell.imageView?.image = UIImage(named: "ic_account_circle")
+      cell.CellLeftImage?.image = UIImage(named: "ic_account_circle")
+      
+      
+      
               if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string:photoUrl), data = NSData(contentsOfURL: url) {
-                  cell.imageView?.image = UIImage(data: data)
+                 // cell.imageView?.image = UIImage(data: data)
+                cell.CellLeftImage?.image = UIImage(data: data)
+                
+                
               }
             }
-              return cell
+    
+    print(cell)
+    return cell
     
   }
   //-------------------------methods for autosize
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return UITableViewAutomaticDimension
   }
-  
+  //-----------------------------------------
   func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return UITableViewAutomaticDimension
   }
@@ -395,11 +416,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
 
 }
-class MessageCell: UITableViewCell {
+/*class MessageCell: UITableViewCell {
   
   
   @IBOutlet weak var CellTitleLabel: UILabel!
   
   @IBOutlet weak var CellMessageLabel: UILabel!
-}
+}*/
 
