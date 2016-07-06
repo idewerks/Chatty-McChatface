@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;Chatty McChatface needs access to your photo library to allow sending messages&quot;</string>
+	<key>NSCameraUsageDescription</key>
+	<string>&quot;Chatty McChatface needs access to your camera to allow sending images&quot;</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>consumerSecret</key>
 	<string>LHcwFQEht2dLUvy7Y8YFMgF7gfQAGWU4FJVnOIr4PU6bhEUdiE</string>
 	<key>consumerKey</key>
