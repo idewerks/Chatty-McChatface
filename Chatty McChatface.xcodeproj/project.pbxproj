@@ -248,6 +248,17 @@
 					84AED8231CFE6F0F008909F3 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = UUCF9CV25S;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+						};
 					};
 					84AED8371CFE6F0F008909F3 = {
 						CreatedOnToolsVersion = 7.3.1;

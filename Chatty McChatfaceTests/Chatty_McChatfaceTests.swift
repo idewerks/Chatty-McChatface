@@ -5,12 +5,13 @@
 //  Created by kevin brennan on 5/31/16.
 //  Copyright © 2016 kevin brennan. All rights reserved.
 //
+/*
 
 import XCTest
 @testable import Chatty_McChatface
 
 class Chatty_McChatfaceTests: XCTestCase {
-    
+ 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -32,5 +33,5 @@ class Chatty_McChatfaceTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-}
+ 
+}*/

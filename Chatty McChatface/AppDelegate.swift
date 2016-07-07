@@ -38,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //-----------------
  // [END firebase_configure]
     
- //----------------------added from quickstart-ios/authentication app delegate
-    
  //Facebook authentication
  FBSDKApplicationDelegate.sharedInstance().application(application,
  didFinishLaunchingWithOptions:launchOptions)
@@ -53,11 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  Twitter.sharedInstance().startWithConsumerKey(key, consumerSecret: secret)
  }
  
- 
- //----------------------added from quickstart-ios/authentication app delegate
     return true
   }
-  //----------------------added from quickstart-ios/authentication app delegate  
+  
   @available(iOS 9.0, *)
   func application(application: UIApplication, openURL url: NSURL, options: [String : AnyObject])
     -> Bool {
@@ -79,6 +75,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                  annotation: annotation)
   }
   
-  //----------------------added from quickstart-ios/authentication app delegate}
 
 }
