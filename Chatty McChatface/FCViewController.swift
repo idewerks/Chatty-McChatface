@@ -14,7 +14,7 @@ import Firebase
 //import FirebaseDatabase
 //import FirebaseRemoteConfig
 //import FirebaseStorage
-//import GoogleMobileAds
+import GoogleMobileAds
 
 /**
  * AdMob ad unit IDs are not currently stored inside the google-services.plist file. Developers
@@ -105,6 +105,8 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     self.clientTable.rowHeight = UITableViewAutomaticDimension
     fetchConfig()
     configureStorage()
+    //self.messages.removeAll()
+    //self.clientTable.reloadData()
     
     //-------------------need to move keyboard text box up when keyboard is showing
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FCViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
@@ -113,6 +115,12 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     self.hideKeyboardWhenTappedAround()
   }
   //___________________________________________________________________________________________
+  /*deinit {
+    self.ref.child("messages").removeObserverWithHandle(_refHandle)
+  }*/
+  
+  
+  
   
   //need a couple methods here to move keyboard
   func keyboardWillShow(sender: NSNotification) {
@@ -181,6 +189,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     self.messages.append(snapshot)
     //add another row to the clientTable (UITableView Object)
     self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
+      //self.clientTable.reloadData()
     self.scrollToLastRow()
       
     })
@@ -202,8 +211,12 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   override func viewWillDisappear(animated: Bool) {
     // self.ref.removeObserverWithHandle(_refHandle)
+    super.viewWillDisappear(animated)
     self.ref.child("messages").removeObserverWithHandle(_refHandle) //This fixed a bug where table view fired twice on an image add message
   }
+  
+  
+  
   
   // UITableViewDataSource protocol methods
   //___________________________________________________________________________________________
@@ -211,7 +224,15 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     return messages.count
   }
 
- //___________________________________________________________________________________________
+
+  
+  
+  
+  
+  
+  
+  
+  //___________________________________________________________________________________________
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Create a cell
     let cell = self.clientTable .dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageCell
@@ -233,7 +254,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             //get image from firebase storage
             //async method returns object or error- exits at completion of media retrieval
               
-              FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(INT64_MAX){ (data, error) in
+              FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(4000000){ (data, error) in
               if let error = error {
                   print("Error downloading: \(error)")
                   return
@@ -243,10 +264,10 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             cell.CellLeftImage?.image = UIImage.init(data: data!)
             cell.CellTitleLabel.text = name
             cell.CellMessageLabel.text="Sent Image"
-            }//end get image from firebase storage
+           }//end get image from firebase storage
               
             return cell
-              
+      //}
              //if not stored in firebase storage, retrieve image from web url
             } else
               if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
@@ -269,6 +290,18 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
 
             return cell
           }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   //methods for autosizing table view row height
   //___________________________________________________________________________________________
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -353,7 +386,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     picker.dismissViewControllerAnimated(true, completion:nil)
   
     if picker.sourceType == .Camera{
- 
+      // Camera Use
       let myimage = info[UIImagePickerControllerOriginalImage] as! UIImage
       let imageData = UIImageJPEGRepresentation(myimage, 0.5)
       let imagePath = FIRAuth.auth()!.currentUser!.uid +
