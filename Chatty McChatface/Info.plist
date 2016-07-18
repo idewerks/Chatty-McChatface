@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>&quot;Allow Chatty McChatface to access location always&quot;</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Allow Chatty McChatface to access location when in use&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -86,9 +90,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>"Chatty McChatface needs access to your camera to allow sending images"</string>
+	<string>&quot;Chatty McChatface needs access to your camera to allow sending images&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>"Chatty McChatface needs access to your photo library to allow sending messages"</string>
+	<string>&quot;Chatty McChatface needs access to your photo library to allow sending messages&quot;</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
