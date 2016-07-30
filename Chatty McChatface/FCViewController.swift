@@ -241,6 +241,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
     let message = messageSnapshot.value as! Dictionary<String, String>
     let name = message[Constants.MessageFields.name] as String!
+    let dateSent = message[Constants.MessageFields.dateSent] as String!
     // Done unpacking Firebase data
     //This block decodes an imageURL which is an embedded photo
     //imageUrl is the storage field used for a media(photo) item
@@ -264,6 +265,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             cell.CellLeftImage?.image = UIImage.init(data: data!)
             cell.CellTitleLabel.text = name
             cell.CellMessageLabel.text="Sent Image"
+            cell.CellDateLabel.text = "date goes here"
            }//end get image from firebase storage
               
             return cell
@@ -283,6 +285,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
               cell.CellMessageLabel.text=text
               cell.CellTitleLabel.text = name
               cell.CellLeftImage?.image = UIImage(named: "ic_account_circle")
+              cell.CellDateLabel.text = "date goes here"
               if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string:photoUrl), data = NSData(contentsOfURL: url) {
                 cell.CellLeftImage?.image = UIImage(data: data)
               }
@@ -370,6 +373,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   func sendMessage(data: [String: String]) {
     var mdata = data
     mdata[Constants.MessageFields.name] = AppState.sharedInstance.displayName
+    mdata[Constants.MessageFields.dateSent] = AppState.sharedInstance.dateSent
     
     if let photoUrl = AppState.sharedInstance.photoUrl {
       mdata[Constants.MessageFields.photoUrl] = photoUrl.absoluteString
@@ -412,7 +416,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     
     asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput, info) in
       let imageFileUrl = contentEditingInput?.fullSizeImageURL
-      
+      //}
       
       let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(Int64(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
       print(filePath)
@@ -430,6 +434,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
         }
        }
       )
+      
+      
+      
+      
+      
      }
     }
   

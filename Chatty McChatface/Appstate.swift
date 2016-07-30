@@ -15,4 +15,5 @@ class AppState: NSObject {
   var displayName: String?
   var photoUrl: NSURL?
   var imageUrl: NSURL?
+  var dateSent: String?
 }
