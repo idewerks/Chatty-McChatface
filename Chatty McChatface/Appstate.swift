@@ -13,7 +13,10 @@ class AppState: NSObject {
   
   var signedIn = false
   var displayName: String?
-  var photoUrl: NSURL?
+  var avatarUrl: NSURL?
   var imageUrl: NSURL?
   var dateSent: String?
+  var messageLat: String?
+  var messageLon: String?
+  
 }

@@ -197,7 +197,7 @@ class SignInViewController: UIViewController {
     MeasurementHelper.sendLoginEvent()
     
     AppState.sharedInstance.displayName = user?.displayName ?? user?.email
-    AppState.sharedInstance.photoUrl = user?.photoURL
+    AppState.sharedInstance.avatarUrl = user?.photoURL
     
     AppState.sharedInstance.signedIn = true
     NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationKeys.SignedIn, object: nil, userInfo: nil)

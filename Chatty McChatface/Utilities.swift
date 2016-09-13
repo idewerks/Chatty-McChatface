@@ -23,3 +23,12 @@ extension UIViewController {
     view.endEditing(true)
   }
 }
+
+func StringDate()->String {
+  //returns the current date as string
+  let date = NSDate()
+  let dateFormatter = NSDateFormatter()
+  dateFormatter.dateFormat = "MM-dd-yy 'at' HH:mm a"
+  let dateString = dateFormatter.stringFromDate(date)
+  return dateString
+}

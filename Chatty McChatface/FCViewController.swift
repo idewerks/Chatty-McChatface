@@ -245,7 +245,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     // Done unpacking Firebase data
     //This block decodes an imageURL which is an embedded photo
     //imageUrl is the storage field used for a media(photo) item
-    //photoURL is the storage field used for avatars
+    //avatarUrl is the storage field used for avatars
     
     if let imageUrl = message[Constants.MessageFields.imageUrl] {
       //message contains an embedded image media url
@@ -286,7 +286,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
               cell.CellTitleLabel.text = name
               cell.CellLeftImage?.image = UIImage(named: "ic_account_circle")
               cell.CellDateLabel.text = "date goes here"
-              if let photoUrl = message[Constants.MessageFields.photoUrl], url = NSURL(string:photoUrl), data = NSData(contentsOfURL: url) {
+              if let avatarUrl = message[Constants.MessageFields.avatarUrl], url = NSURL(string:avatarUrl), data = NSData(contentsOfURL: url) {
                 cell.CellLeftImage?.image = UIImage(data: data)
               }
             }
@@ -364,6 +364,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     let data = [Constants.MessageFields.text: textField.text! as String]
     sendMessage(data)
+    print (data)
     return true
   }
   
@@ -373,11 +374,24 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   func sendMessage(data: [String: String]) {
     var mdata = data
     mdata[Constants.MessageFields.name] = AppState.sharedInstance.displayName
-    mdata[Constants.MessageFields.dateSent] = AppState.sharedInstance.dateSent
+    //mdata[Constants.MessageFields.dateSent] = AppState.sharedInstance.dateSent
     
-    if let photoUrl = AppState.sharedInstance.photoUrl {
-      mdata[Constants.MessageFields.photoUrl] = photoUrl.absoluteString
+    
+    
+    
+    //TODO- get real date for next line. other message fields are populated here as well
+    
+    
+    
+    
+    
+    
+    
+    mdata[Constants.MessageFields.dateSent] = StringDate()
+    if let avatarUrl = AppState.sharedInstance.avatarUrl {
+      mdata[Constants.MessageFields.avatarUrl] = avatarUrl.absoluteString
       }
+    print(mdata)
     // Push data to Firebase Database
     self.ref.child("messages").childByAutoId().setValue(mdata)
   }
