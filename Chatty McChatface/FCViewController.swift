@@ -245,7 +245,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     // Done unpacking Firebase data
     //This block decodes an imageURL which is an embedded photo
     //imageUrl is the storage field used for a media(photo) item
-    //photoUrl is the storage field used for avatars
+    //photoURL is the storage field used for avatars
     
     if let imageUrl = message[Constants.MessageFields.imageUrl] {
       //message contains an embedded image media url

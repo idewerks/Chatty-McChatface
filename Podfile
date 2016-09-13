@@ -11,6 +11,7 @@ pod 'Firebase/Database'
 pod 'Firebase/RemoteConfig'
 # Auth Providers
 pod 'FBSDKLoginKit'
+pod 'FBSDKCoreKit'
 pod 'GoogleSignIn'
 pod 'TwitterKit'
 
