@@ -18,10 +18,14 @@ struct Constants {
   }
   
   struct MessageFields {
+    static let senderId = "senderId"// need to implement downstream
     static let name = "name"
     static let text = "text"
     static let avatarUrl = "avatarUrl"
     static let imageUrl = "imageUrl"
     static let dateSent = "dateSent"
+    static let messageLat = "messageLat"
+    static let messageLon = "messageLon"
+    
   }
 }

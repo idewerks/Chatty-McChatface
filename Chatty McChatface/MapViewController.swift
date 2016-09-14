@@ -37,6 +37,14 @@ print("map code")
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  override func viewWillDisappear(animated: Bool) {
+    
+    super.viewWillDisappear(animated)
+    
+    //free up some resources
+    locationManager.stopUpdatingLocation()  }
+  
+  
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
   {
     

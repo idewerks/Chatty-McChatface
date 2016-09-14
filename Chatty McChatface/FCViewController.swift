@@ -15,6 +15,7 @@ import Firebase
 //import FirebaseRemoteConfig
 //import FirebaseStorage
 import GoogleMobileAds
+//import CoreLocation
 
 /**
  * AdMob ad unit IDs are not currently stored inside the google-services.plist file. Developers
@@ -89,6 +90,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+        
+    
     
     ref = FIRDatabase.database().reference()
     
@@ -187,6 +191,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
     //add snapshot of next message to be appended to messages object(FIRdata snapshot object)
     self.messages.append(snapshot)
+      
     //add another row to the clientTable (UITableView Object)
     self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
       //self.clientTable.reloadData()
@@ -210,7 +215,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   //___________________________________________________________________________________________
   
   override func viewWillDisappear(animated: Bool) {
-    // self.ref.removeObserverWithHandle(_refHandle)
+    
     super.viewWillDisappear(animated)
     self.ref.child("messages").removeObserverWithHandle(_refHandle) //This fixed a bug where table view fired twice on an image add message
   }
@@ -265,7 +270,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             cell.CellLeftImage?.image = UIImage.init(data: data!)
             cell.CellTitleLabel.text = name
             cell.CellMessageLabel.text="Sent Image"
-            cell.CellDateLabel.text = "date goes here"
+            cell.CellDateLabel.text = dateSent
            }//end get image from firebase storage
               
             return cell
@@ -285,7 +290,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
               cell.CellMessageLabel.text=text
               cell.CellTitleLabel.text = name
               cell.CellLeftImage?.image = UIImage(named: "ic_account_circle")
-              cell.CellDateLabel.text = "date goes here"
+              cell.CellDateLabel.text = dateSent
               if let avatarUrl = message[Constants.MessageFields.avatarUrl], url = NSURL(string:avatarUrl), data = NSData(contentsOfURL: url) {
                 cell.CellLeftImage?.image = UIImage(data: data)
               }
@@ -372,22 +377,20 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   // Send Message to Firebase
   //____________________________________________________________________________________________
   func sendMessage(data: [String: String]) {
+    
+    //assemble the firebase message
     var mdata = data
     mdata[Constants.MessageFields.name] = AppState.sharedInstance.displayName
-    //mdata[Constants.MessageFields.dateSent] = AppState.sharedInstance.dateSent
-    
-    
-    
-    
-    //TODO- get real date for next line. other message fields are populated here as well
-    
-    
-    
-    
-    
     
     
     mdata[Constants.MessageFields.dateSent] = StringDate()
+        
+    
+    let currentLocation = getMessageLocation()
+    mdata[Constants.MessageFields.messageLat] = "\(currentLocation.coordinate.latitude)"
+    mdata[Constants.MessageFields.messageLon] = "\(currentLocation.coordinate.longitude)"
+    
+    
     if let avatarUrl = AppState.sharedInstance.avatarUrl {
       mdata[Constants.MessageFields.avatarUrl] = avatarUrl.absoluteString
       }

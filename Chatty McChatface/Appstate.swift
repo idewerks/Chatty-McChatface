@@ -16,7 +16,7 @@ class AppState: NSObject {
   var avatarUrl: NSURL?
   var imageUrl: NSURL?
   var dateSent: String?
-  var messageLat: String?
-  var messageLon: String?
+  //var messageLat: String?
+  //var messageLon: String?
   
 }

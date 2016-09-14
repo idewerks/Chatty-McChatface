@@ -32,3 +32,5 @@ func StringDate()->String {
   let dateString = dateFormatter.stringFromDate(date)
   return dateString
 }
+
+
