@@ -9,17 +9,35 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
+
+
+
+/*protocol MapViewControllerDelegate {
+  
+  //func getMessagesArray(messagesArray: [FIRDataSnapshot]!)
+  func getMessagesArray(data: Data)
+  
+}*/
+
+
 
 class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
+  
+  //var delegate: MapViewControllerDelegate?
+//  var messagesArray:[FIRDataSnapshot]?
+  
+  
+  
+  
   @IBOutlet weak var chattyMap: MKMapView!
   var locationManager: CLLocationManager!
 
-  
-  
+  //var messages: [FIRDataSnapshot]! = []
   
   override func viewDidLoad() {
         super.viewDidLoad()
-print("map code")
+//print(messagesArray)
         // Do any additional setup after loading the view.
     if (CLLocationManager.locationServicesEnabled())
     {
@@ -28,8 +46,19 @@ print("map code")
       locationManager.desiredAccuracy = kCLLocationAccuracyBest
       locationManager.requestAlwaysAuthorization()
       locationManager.startUpdatingLocation()
+      
+
+   /*   func getMessagesArray()->[FIRDataSnapshot!] {
+        
+        return messages*/
+      //messages=getMessagesArray()
+      
+      
+      
+      
+      
+      
     }
-    
     
     }
 
@@ -43,7 +72,7 @@ print("map code")
     
     //free up some resources
     locationManager.stopUpdatingLocation()  }
-  
+   // self.delegate?.getMessagesArray(messagesArray)!
   
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
   {
@@ -64,5 +93,4 @@ print("map code")
         // Pass the selected object to the new view controller.
    // }
   
-
 }

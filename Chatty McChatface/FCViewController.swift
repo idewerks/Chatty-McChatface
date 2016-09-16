@@ -23,7 +23,7 @@ import GoogleMobileAds
  * these ad units are configured to return only test ads, and should not be used outside this sample.
  */
 let kBannerAdUnitID = "ca-app-pub-3940256099942544/2934735716"
-
+//var messages: [FIRDataSnapshot]! = []
 @objc(FCViewController)
 class FCViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
 UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -171,26 +171,19 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   func configureStorage() {
     storageRef = FIRStorage.storage().reference()
   }
-   //___________________________________________________________________________________________
-  
-  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    guard let text = textField.text else { return true }
-    let newLength = text.utf16.count + string.utf16.count - range.length
-    return newLength <= self.msglength.integerValue // returns bool
-  }
-   //___________________________________________________________________________________________
+      //___________________________________________________________________________________________
   
   override func viewWillAppear(animated: Bool) {
     
     self.clientTable.estimatedRowHeight = 40
     self.clientTable.rowHeight = UITableViewAutomaticDimension
     self.messages.removeAll()
-    self.clientTable.reloadData()    // Listen for new messages in the Firebase database
+    self.clientTable.reloadData()    // reloads the table view
     
     //This fires when a new message is added
     _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
     //add snapshot of next message to be appended to messages object(FIRdata snapshot object)
-    self.messages.append(snapshot)
+    self.messages.append(snapshot) //add the snapshot to messages array
       
     //add another row to the clientTable (UITableView Object)
     self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
@@ -200,6 +193,30 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     })
   }
   
+    //___________________________________________________________________________________________
+  
+  override func viewWillDisappear(animated: Bool) {
+    
+    super.viewWillDisappear(animated)
+    self.ref.child("messages").removeObserverWithHandle(_refHandle) //This fixed a bug where table view fired twice on an image add message
+  }
+  
+  
+  //___________________________________________________________________________________________
+  
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    guard let text = textField.text else { return true }
+    let newLength = text.utf16.count + string.utf16.count - range.length
+    return newLength <= self.msglength.integerValue // returns bool
+  }
+
+  
+  // UITableViewDataSource protocol methods
+  //___________________________________________________________________________________________
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return messages.count
+  }
+
   //get current message index
   //____________________________________________________________________________________________
   func indexOfMessage(snapshot: FIRDataSnapshot) -> Int {
@@ -212,24 +229,6 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     }
     return -1
   }
-  //___________________________________________________________________________________________
-  
-  override func viewWillDisappear(animated: Bool) {
-    
-    super.viewWillDisappear(animated)
-    self.ref.child("messages").removeObserverWithHandle(_refHandle) //This fixed a bug where table view fired twice on an image add message
-  }
-  
-  
-  
-  
-  // UITableViewDataSource protocol methods
-  //___________________________________________________________________________________________
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return messages.count
-  }
-
-
   
   
   
@@ -243,10 +242,10 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     let cell = self.clientTable .dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageCell
     
     // Unpack message from Firebase DataSnapshot
-    let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
-    let message = messageSnapshot.value as! Dictionary<String, String>
-    let name = message[Constants.MessageFields.name] as String!
-    let dateSent = message[Constants.MessageFields.dateSent] as String!
+    let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]  //get message snapshot from messages array
+    let message = messageSnapshot.value as! Dictionary<String, String>    //get message as dictionary
+    let name = message[Constants.MessageFields.name] as String!           //get current name
+    let dateSent = message[Constants.MessageFields.dateSent] as String!   //get current date
     // Done unpacking Firebase data
     //This block decodes an imageURL which is an embedded photo
     //imageUrl is the storage field used for a media(photo) item
@@ -277,6 +276,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       //}
              //if not stored in firebase storage, retrieve image from web url
             } else
+              
+              
+              
               if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
                 cell.CellLeftImage?.image = UIImage.init(data: data)
             }
@@ -325,6 +327,8 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   //note this has to be done programmatically. During compilation xcode checks for existence of this method, and if available, enables swipe to delete functionality
   //_________________________________________________________________________________________
    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    // swipe to delete message method
       if editingStyle == .Delete {
       
         //following is a cell instance of FIRDataSnapshot
@@ -475,6 +479,12 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       self.presentViewController(alert, animated: true, completion: nil)
     }//end dispatch
   }//end show alert
+  
+  
+/*  func getMessagesArray(messages: [FIRDataSnapshot]!) {
+    
+    //self.messages = "\(messages!)"
+  //}
+}*/
+
 }
-
-

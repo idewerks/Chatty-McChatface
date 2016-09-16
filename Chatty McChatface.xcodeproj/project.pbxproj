@@ -13,6 +13,7 @@
 		841922261CFE750F00B9ED17 /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841922251CFE750F00B9ED17 /* MeasurementHelper.swift */; };
 		841922281CFE75E900B9ED17 /* FCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841922271CFE75E900B9ED17 /* FCViewController.swift */; };
 		8419222E1CFE7F3900B9ED17 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */; };
+		8444F0841D88EC32004A65D9 /* MapAnnotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444F0831D88EC32004A65D9 /* MapAnnotate.swift */; };
 		8465F9331D0902BC0053EE84 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8465F9321D0902BC0053EE84 /* MessageCell.swift */; };
 		84AED8281CFE6F0F008909F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED8271CFE6F0F008909F3 /* AppDelegate.swift */; };
 		84AED82F1CFE6F0F008909F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AED82E1CFE6F0F008909F3 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		841922251CFE750F00B9ED17 /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasurementHelper.swift; path = ../MeasurementHelper.swift; sourceTree = "<group>"; };
 		841922271CFE75E900B9ED17 /* FCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCViewController.swift; sourceTree = "<group>"; };
 		8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		8444F0831D88EC32004A65D9 /* MapAnnotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotate.swift; sourceTree = "<group>"; };
 		8465F9321D0902BC0053EE84 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCell.swift; path = ../MessageCell.swift; sourceTree = "<group>"; };
 		84AED8241CFE6F0F008909F3 /* Chatty McChatface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty McChatface.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AED8271CFE6F0F008909F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				841922231CFE749D00B9ED17 /* Main.storyboard */,
 				84D67B161D389924004CF84E /* MapViewController.swift */,
+				8444F0831D88EC32004A65D9 /* MapAnnotate.swift */,
 				8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */,
 				84AED8301CFE6F0F008909F3 /* LaunchScreen.storyboard */,
 				84AED8271CFE6F0F008909F3 /* AppDelegate.swift */,
@@ -382,6 +385,7 @@
 				841922221CFE740700B9ED17 /* Constants.swift in Sources */,
 				8465F9331D0902BC0053EE84 /* MessageCell.swift in Sources */,
 				841922261CFE750F00B9ED17 /* MeasurementHelper.swift in Sources */,
+				8444F0841D88EC32004A65D9 /* MapAnnotate.swift in Sources */,
 				84FA5A171D01B136006D5E1F /* Utilities.swift in Sources */,
 				84FB3CBC1D88608B002745D8 /* LocationHelper.swift in Sources */,
 				84D67B171D389924004CF84E /* MapViewController.swift in Sources */,
