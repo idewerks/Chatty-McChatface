@@ -11,7 +11,7 @@ import CoreLocation
 
 
 
-
+//get current location
 func getMessageLocation()->CLLocation! {
  
   let locManager = CLLocationManager()
@@ -19,14 +19,14 @@ func getMessageLocation()->CLLocation! {
   locManager.requestAlwaysAuthorization()
   locManager.startUpdatingLocation()
   
-  
-  
-  
   var currentLocation: CLLocation!
   locManager.requestWhenInUseAuthorization()
   
   if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
     CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways){
+  
+    
+    
     
     currentLocation = locManager.location
     locManager.stopUpdatingLocation()

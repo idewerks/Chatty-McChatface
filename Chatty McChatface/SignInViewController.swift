@@ -102,6 +102,7 @@ class SignInViewController: UIViewController {
     prompt.addAction(okAction)
     presentViewController(prompt, animated: true, completion: nil)
   }
+  
  
   @IBAction func TwitterLoginButton(sender: AnyObject) {
     
@@ -118,7 +119,7 @@ class SignInViewController: UIViewController {
           }else{
            print("user nil error: \(error!.localizedDescription)")
           }
-        }//-
+        }
       
       } else {
         print("session error: \(error!.localizedDescription)")
@@ -142,17 +143,14 @@ class SignInViewController: UIViewController {
         // [END headless_facebook_auth]
         self.firebaseLogin(credential)
         
-        
       }
     })
-
-}
+  }
   
   func firebaseLogin(credential: FIRAuthCredential) {
     
       if let user = FIRAuth.auth()?.currentUser {
-        user.linkWithCredential(credential) { (user, error) in
-       
+        user.linkWithCredential(credential) { (user, error) in       
             if let error = error {
               print(error.localizedDescription)
               return
@@ -161,10 +159,10 @@ class SignInViewController: UIViewController {
         }else {
         //link success
         FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-            //if let error = error {
-              //print(error.localizedDescription)
-              //return
-           // }
+            if let error = error {
+              print(error.localizedDescription)
+              return
+            }
           if (user != nil){
             self.signedIn(FIRAuth.auth()?.currentUser)
             
@@ -172,33 +170,19 @@ class SignInViewController: UIViewController {
             print("user nil error: \(error!.localizedDescription)")
           }
           
-   
-          }//-[sign in with credential]
-        
-        
-        
-        
-        
-        
         }
+        
       }
+    }
 
-  
-  
-  
-  
-  
-  
-  
-  
+ 
   
   
   func signedIn(user: FIRUser?) {
-    MeasurementHelper.sendLoginEvent()
     
+    MeasurementHelper.sendLoginEvent()
     AppState.sharedInstance.displayName = user?.displayName ?? user?.email
     AppState.sharedInstance.avatarUrl = user?.photoURL
-    
     AppState.sharedInstance.signedIn = true
     NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationKeys.SignedIn, object: nil, userInfo: nil)
     performSegueWithIdentifier(Constants.Segues.SignInToFp, sender: nil)

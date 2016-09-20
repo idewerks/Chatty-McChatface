@@ -8,7 +8,12 @@
 
 import Foundation
 import UIKit
-// Put this piece of code anywhere you like
+
+
+
+// extend the view controller- add 2 methods
+// 1. Dismiss Keyboard when tapped around
+// 2. dismiss the keyboard
 
 extension UIViewController {
 
@@ -17,12 +22,12 @@ extension UIViewController {
     view.addGestureRecognizer(tap)
   }
  
-  
-  
   func dismissKeyboard() {
     view.endEditing(true)
   }
 }
+//------------------------------------------
+//get current date, format it, and return a formatted date string to the caller
 
 func StringDate()->String {
   //returns the current date as string

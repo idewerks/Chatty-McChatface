@@ -115,8 +115,15 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     //-------------------need to move keyboard text box up when keyboard is showing
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FCViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FCViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+    
+    //add observer for messages
+ //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FCViewController.getMessages(_:)), name:m, object: nil)
     FIRCrashMessage("View loaded")
     self.hideKeyboardWhenTappedAround()
+    
+   
+    
+  
   }
   //___________________________________________________________________________________________
   /*deinit {
@@ -134,6 +141,22 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   func keyboardWillHide(sender: NSNotification) {
     self.view.frame.origin.y = 0
   }
+  
+  
+  
+  
+  
+  func getMessages (sender: NSNotification) {
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
   
   //--------------------------------------------------------
   func loadAd() {
@@ -199,6 +222,12 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     
     super.viewWillDisappear(animated)
     self.ref.child("messages").removeObserverWithHandle(_refHandle) //This fixed a bug where table view fired twice on an image add message
+    
+    
+    //Release the beyboard observers
+    NSNotificationCenter.defaultCenter().removeObserver( UIKeyboardWillShowNotification)
+    NSNotificationCenter.defaultCenter().removeObserver( UIKeyboardWillHideNotification )
+  
   }
   
   
