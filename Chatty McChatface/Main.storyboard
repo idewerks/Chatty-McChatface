@@ -286,7 +286,7 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ije-W1-sPJ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ije-W1-sPJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="65" height="49"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qiz-cW-Znb">
@@ -400,8 +400,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLA-Vu-aU5">
-                                <rect key="frame" x="40" y="50" width="240" height="413"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLA-Vu-aU5">
+                                <rect key="frame" x="20" y="50" width="280" height="413"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </mapView>
                         </subviews>
@@ -416,10 +416,10 @@
             </objects>
             <point key="canvasLocation" x="889" y="832"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Messages Tab Controller-->
         <scene sceneID="06e-V3-Tlw">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xPE-B5-Wnx" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xPE-B5-Wnx" customClass="MessagesTabController" customModule="Chatty_McChatface" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="xqd-22-Hkc">
                         <autoresizingMask key="autoresizingMask"/>
