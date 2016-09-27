@@ -10,13 +10,11 @@ import Foundation
 class AppState: NSObject {
   
   static let sharedInstance = AppState()
-  
+  //persistent objects
+  //This is for user parameters ONLY
   var signedIn = false
   var displayName: String?
   var avatarUrl: NSURL?
-  var imageUrl: NSURL?
-  var dateSent: String?
-  //var messageLat: String?
-  //var messageLon: String?
+ 
   
 }

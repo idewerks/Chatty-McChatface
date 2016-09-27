@@ -11,7 +11,6 @@ import UIKit
 import Firebase
 import GoogleMobileAds
 
-
 /**
  * AdMob ad unit IDs are not currently stored inside the google-services.plist file. Developers
  * using AdMob can store them as custom values in another plist, or simply use constants. Note that
@@ -185,8 +184,10 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
       
     //add another row to the clientTable (UITableView Object)
+//self.clientTable.rowHeight = UITableViewAutomaticDimension
     self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
       //self.clientTable.reloadData()
+      
     self.scrollToLastRow()
       
     })
@@ -408,7 +409,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       print("media")
       
       mdata[Constants.MessageFields.text] = ""
-      mdata[Constants.MessageFields.avatarUrl] = ""
+      mdata[Constants.MessageFields.avatarUrl] = "" //blank the avatarUrl since the space is used for media
       self.ref.child("messages").childByAutoId().setValue(mdata)
       
        }

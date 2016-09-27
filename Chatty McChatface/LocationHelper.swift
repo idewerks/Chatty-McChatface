@@ -11,7 +11,7 @@ import CoreLocation
 import Firebase
 import MapKit
 
-//get current location
+//This method retrieves the current users location- returns a CLLocation object to caller
 func getMessageLocation()->CLLocation! {
  
   let locManager = CLLocationManager()
@@ -26,6 +26,8 @@ func getMessageLocation()->CLLocation! {
     CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways){
     currentLocation = locManager.location
     locManager.stopUpdatingLocation()
-    }
+  }else {
+  print("Error- Location Authorization Failure")
+  }
   return currentLocation
   }

@@ -55,28 +55,21 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     
     let location = locations.last! as CLLocation
     let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-    let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0))
     self.chattyMap.showsUserLocation = true
     self.chattyMap.setRegion(region, animated: true)
     self.chattyMap.zoomEnabled = true
   }
-
-  
   
   func updatePinAnnotation(pinMessage: [FIRDataSnapshot]!)  {
-    
+    print (pinMessage.count)
     for index in 0..<pinMessage.count //iterate through each message
   {
+    
+    print(index)
     //convert FIRDataSnapshot object to String:Anyobject dictionary
       if let snapLocation = pinMessage[index].value as? [String : String] {
-        /*print(snapLocation)
-        print(snapLocation["name"]!)
-        print(snapLocation["dateSent"]!)
-        print(snapLocation["avatarUrl"]!)
-        print(snapLocation["text"]!)
-        print(snapLocation["messageLat"]!)
-        print(snapLocation["messageLon"]!)*/
-      
+        
       let annotation = MKPointAnnotation()
       annotation.title = snapLocation["name"]!//"blank title"
       annotation.subtitle = "blank subtitle"
@@ -85,8 +78,9 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
      
      annotation.coordinate = CLLocationCoordinate2D(latitude: coordlat!, longitude: coordlong!)
     chattyMap.addAnnotation(annotation)
-      
+     
       }
     }
   }
+  
 }
