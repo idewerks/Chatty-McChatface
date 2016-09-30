@@ -174,7 +174,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
     //add snapshot of next message to be appended to messages object(FIRdata snapshot object)
     self.messages.append(snapshot) //add the snapshot to messages array
-    
+    print("message observer fired")
     // Assign self.messages to MessagesTabController(instance of tabBarController)
       if let tbc = self.tabBarController as? MessagesTabController {
         tbc.myMessages = self.messages
@@ -187,9 +187,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
 //self.clientTable.rowHeight = UITableViewAutomaticDimension
     self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
       //self.clientTable.reloadData()
-      
+     print("table rows inserted")
     self.scrollToLastRow()
-      
+     print("scrolled to last row")
     })
   }
   
@@ -198,6 +198,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   override func viewWillDisappear(animated: Bool) {
     
     super.viewWillDisappear(animated)
+    print("kill observers ")
     self.ref.child("messages").removeObserverWithHandle(_refHandle) //This fixed a bug where table view fired twice on an image add message
     
     //Release the keyboard observers
@@ -219,6 +220,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   // UITableViewDataSource protocol methods
   //___________________________________________________________________________________________
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print("get message count")
     return messages.count
   }
 
@@ -259,13 +261,13 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             if imageUrl.hasPrefix("gs://") {
             //get image from firebase storage
             //async method returns object or error- exits at completion of media retrieval
-              
+              print("get image")
               FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(4000000){ (data, error) in
               if let error = error {
                   print("Error downloading: \(error)")
                   return
                   }
-                
+              print("image recieved")
             //This fires when download of image is complete
             cell.CellLeftImage?.image = UIImage.init(data: data!)
             cell.CellTitleLabel.text = name
@@ -375,7 +377,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     //this passes either a text or imageUrl
     
     //empty data is delimited by empty string ("") to prevent nil
-    
+    print("start send message")
     //make a mutable copy of data
     var mdata = data
     //for media messages, mdata already contains a key-value for imageUrl
@@ -387,10 +389,12 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     mdata[Constants.MessageFields.dateSent] = StringDate()
     
     
-    let currentLocation = getMessageLocation()
+    if let currentLocation = getMessageLocation() {
     mdata[Constants.MessageFields.messageLat] = "\(currentLocation.coordinate.latitude)"
     mdata[Constants.MessageFields.messageLon] = "\(currentLocation.coordinate.longitude)"
-    
+    }else{
+      print("Location Failure")
+    }
     //ddetect whether text or media message
     if messageType == true { //text message
       
@@ -413,6 +417,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       self.ref.child("messages").childByAutoId().setValue(mdata)
       
        }
+    print("end of send message")
    }
   
   // image picker
@@ -426,12 +431,13 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     if picker.sourceType == .Camera{
       // Camera Use
       let myimage = info[UIImagePickerControllerOriginalImage] as! UIImage
-      let imageData = UIImageJPEGRepresentation(myimage, 0.5)
+      let imageData = UIImageJPEGRepresentation(myimage, 0.0)
       let imagePath = FIRAuth.auth()!.currentUser!.uid +
         "/\(Int64(NSDate.timeIntervalSinceReferenceDate() * 1000))/asset.jpg"
       
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
+      print("start image store")
       self.storageRef.child(imagePath)
         .putData(imageData!, metadata: metadata) { (metadata, error) in
           if let error = error {
@@ -450,14 +456,14 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     let asset = assets.firstObject
     
     asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput, info) in
-      let imageFileUrl = contentEditingInput?.fullSizeImageURL
+      let imageFileUrl = contentEditingInput?.fullSizeImageURL//displaySizeImage
       //}
       
       let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(Int64(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
       
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
-      //print(metadata)
+      print("start lib image store")
       
       self.storageRef.child(filePath)
         .putFile(imageFileUrl!, metadata: metadata) { (metadata, error) in
@@ -465,6 +471,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             print("Error uploading: \(error.description)")
             return
           }
+          print("image store complete")
          // [Constants.MessageFields.text] = ""
           let messageType = false
       self.sendMessage([Constants.MessageFields.imageUrl: self.storageRef.child((metadata?.path)!).description], messageType: messageType)
