@@ -31,10 +31,10 @@ extension UIViewController {
 
 func StringDate()->String {
   //returns the current date as string
-  let date = NSDate()
-  let dateFormatter = NSDateFormatter()
+  let date = Date()
+  let dateFormatter = DateFormatter()
   dateFormatter.dateFormat = "MM-dd-yy 'at' HH:mm a"
-  let dateString = dateFormatter.stringFromDate(date)
+  let dateString = dateFormatter.string(from: date)
   return dateString
 }
 

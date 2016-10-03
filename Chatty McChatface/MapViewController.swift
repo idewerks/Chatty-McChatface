@@ -29,13 +29,13 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     }
   }
   
-  override func viewWillAppear(animated : Bool) {
+  override func viewWillAppear(_ animated : Bool) {
     if let tbc = self.tabBarController as? MessagesTabController {
       updatePinAnnotation(tbc.myMessages!)
     }
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     
     }
   
@@ -44,24 +44,24 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
       
     }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
       super.viewWillDisappear(animated)
       locationManager.stopUpdatingLocation()
     }
   
   
   
-  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
     let location = locations.last! as CLLocation
     let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0))
     self.chattyMap.showsUserLocation = true
     self.chattyMap.setRegion(region, animated: true)
-    self.chattyMap.zoomEnabled = true
+    self.chattyMap.isZoomEnabled = true
   }
   
-  func updatePinAnnotation(pinMessage: [FIRDataSnapshot]!)  {
+  func updatePinAnnotation(_ pinMessage: [FIRDataSnapshot]!)  {
     print (pinMessage.count)
     for index in 0..<pinMessage.count //iterate through each message
   {

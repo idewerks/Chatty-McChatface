@@ -31,49 +31,49 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
   var msglength: NSNumber = 25
-  private var _refHandle: FIRDatabaseHandle!
+  fileprivate var _refHandle: FIRDatabaseHandle!
   var storageRef: FIRStorageReference!
   var remoteConfig: FIRRemoteConfig!
   
   
  //MARK: Action Methods
    //___________________________________________________________________________________________
-  @IBAction func didSendMessage(sender: UIButton) {
+  @IBAction func didSendMessage(_ sender: UIButton) {
     textFieldShouldReturn(textField)
     textField.text=""//clear the text box
     dismissKeyboard() //hide the keyboard
      }
    //___________________________________________________________________________________________
-  @IBAction func didPressCrash(sender: AnyObject) {
+  @IBAction func didPressCrash(_ sender: AnyObject) {
     FIRCrashMessage("Cause Crash button clicked")
   }
    //___________________________________________________________________________________________
-  @IBAction func didPressFreshConfig(sender: AnyObject) {
+  @IBAction func didPressFreshConfig(_ sender: AnyObject) {
     fetchConfig()
   }
    //___________________________________________________________________________________________
 
-  @IBAction func signOut(sender: UIButton) {
+  @IBAction func signOut(_ sender: UIButton) {
     let firebaseAuth = FIRAuth.auth()
     do {
       try firebaseAuth?.signOut()
       AppState.sharedInstance.signedIn = false
-      performSegueWithIdentifier(Constants.Segues.FpToSignIn, sender: nil)
+      performSegue(withIdentifier: Constants.Segues.FpToSignIn, sender: nil)
     } catch let signOutError as NSError {
       print ("Error signing out: \(signOutError)")
     }
   }
 
   //___________________________________________________________________________________________
-  @IBAction func didTapAddPhoto(sender: AnyObject) {
+  @IBAction func didTapAddPhoto(_ sender: AnyObject) {
     let picker = UIImagePickerController()
     picker.delegate = self
-    if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
-      picker.sourceType = .Camera
+    if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+      picker.sourceType = .camera
     } else {
-      picker.sourceType = .PhotoLibrary
+      picker.sourceType = .photoLibrary
     }
-    presentViewController(picker, animated: true, completion:nil)
+    present(picker, animated: true, completion:nil)
     print("present vc")
     
   }
@@ -105,8 +105,8 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     //self.clientTable.reloadData()
     
     //-------------------need to move keyboard text box up when keyboard is showing
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FCViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FCViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(FCViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(FCViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
     
     FIRCrashMessage("View loaded")
     self.hideKeyboardWhenTappedAround()
@@ -118,18 +118,18 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   }*/
   
   //need a couple methods here to move keyboard
-  func keyboardWillShow(sender: NSNotification) {
+  func keyboardWillShow(_ sender: Notification) {
     self.view.frame.origin.y = -160
   }
   //___________________________________________________________________________________________
-  func keyboardWillHide(sender: NSNotification) {
+  func keyboardWillHide(_ sender: Notification) {
     self.view.frame.origin.y = 0
   }
   //--------------------------------------------------------
   func loadAd() {
     self.banner.adUnitID = kBannerAdUnitID
     self.banner.rootViewController = self
-    self.banner.loadRequest(GADRequest())
+    self.banner.load(GADRequest())
   }
   //___________________________________________________________________________________________
   func fetchConfig() {
@@ -145,8 +145,8 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     // fetched and cached config would be considered expired because it would have been fetched
     // more than cacheExpiration seconds ago. Thus the next fetch would go to the server unless
     // throttling is in progress. The default expiration duration is 43200 (12 hours).
-    remoteConfig.fetchWithExpirationDuration(expirationDuration) { (status, error) in
-      if (status == .Success) {
+    remoteConfig.fetch(withExpirationDuration: expirationDuration) { (status, error) in
+      if (status == .success) {
         print("Config fetched!")
         self.remoteConfig.activateFetched()
         self.msglength = self.remoteConfig["chatty_msg_length"].numberValue!
@@ -163,7 +163,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   }
    //___________________________________________________________________________________________
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     
     self.clientTable.estimatedRowHeight = 40
     self.clientTable.rowHeight = UITableViewAutomaticDimension
@@ -171,7 +171,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     self.clientTable.reloadData()    // reloads the table view
     
     //This fires when a new message is added
-    _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+    _refHandle = self.ref.child("messages").observe(.childAdded, with: { (snapshot) -> Void in
     //add snapshot of next message to be appended to messages object(FIRdata snapshot object)
     self.messages.append(snapshot) //add the snapshot to messages array
     print("message observer fired")
@@ -185,7 +185,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
     //add another row to the clientTable (UITableView Object)
 //self.clientTable.rowHeight = UITableViewAutomaticDimension
-    self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
+    self.clientTable.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
       //self.clientTable.reloadData()
      print("table rows inserted")
     self.scrollToLastRow()
@@ -195,38 +195,38 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
     //___________________________________________________________________________________________
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     
     super.viewWillDisappear(animated)
     print("kill observers ")
-    self.ref.child("messages").removeObserverWithHandle(_refHandle) //This fixed a bug where table view fired twice on an image add message
+    self.ref.child("messages").removeObserver(withHandle: _refHandle) //This fixed a bug where table view fired twice on an image add message
     
     //Release the keyboard observers
-    NSNotificationCenter.defaultCenter().removeObserver( UIKeyboardWillShowNotification)
-    NSNotificationCenter.defaultCenter().removeObserver( UIKeyboardWillHideNotification )
+  //  NotificationCenter.default.removeObserver( NSNotification.Name.UIKeyboardWillShow)
+  //  NotificationCenter.default.removeObserver( NSNotification.Name.UIKeyboardWillHide )
   
   }
   
   
   //___________________________________________________________________________________________
   
-  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     guard let text = textField.text else { return true }
     let newLength = text.utf16.count + string.utf16.count - range.length
-    return newLength <= self.msglength.integerValue // returns bool
+    return newLength <= self.msglength.intValue // returns bool
   }
 
   
   // UITableViewDataSource protocol methods
   //___________________________________________________________________________________________
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     print("get message count")
     return messages.count
   }
 
   //get current message index
   //____________________________________________________________________________________________
-  func indexOfMessage(snapshot: FIRDataSnapshot) -> Int {
+  func indexOfMessage(_ snapshot: FIRDataSnapshot) -> Int {
     var index = 0
     for  message in self.messages {
       if (snapshot.key == message.key) {
@@ -238,12 +238,12 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   }
   
   //___________________________________________________________________________________________
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create a cell
-    let cell = self.clientTable .dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageCell
+    let cell = self.clientTable .dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
     
     // Unpack message from Firebase DataSnapshot
-    let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]  //get message snapshot from messages array
+    let messageSnapshot: FIRDataSnapshot! = self.messages[(indexPath as NSIndexPath).row]  //get message snapshot from messages array
     let message = messageSnapshot.value as! Dictionary<String, String>    //get message as dictionary
     let name = message[Constants.MessageFields.name] as String!           //get current name
     let dateSent = message[Constants.MessageFields.dateSent] as String!   //get current date
@@ -258,11 +258,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       //message contains an embedded image media url
       //check to see if it has a firebase storage url prefix
       
-            if imageUrl.hasPrefix("gs://") {
+            if (imageUrl?.hasPrefix("gs://"))! {
             //get image from firebase storage
             //async method returns object or error- exits at completion of media retrieval
               print("get image")
-              FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(4000000){ (data, error) in
+              FIRStorage.storage().reference(forURL: imageUrl!).data(withMaxSize: 4000000){ (data, error) in
               if let error = error {
                   print("Error downloading: \(error)")
                   return
@@ -279,7 +279,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       //}
              //if not stored in firebase storage, retrieve image from web url
             } else
-              if let url = NSURL(string:imageUrl), data = NSData(contentsOfURL: url) {
+              if let url = URL(string:imageUrl!), let data = try? Data(contentsOf: url) {
                 cell.CellLeftImage?.image = UIImage.init(data: data)
             }
                 cell.CellTitleLabel.text = name
@@ -293,7 +293,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
               cell.CellTitleLabel.text = name
               cell.CellLeftImage?.image = UIImage(named: "ic_account_circle")
               cell.CellDateLabel.text = dateSent
-              if let avatarUrl = message[Constants.MessageFields.avatarUrl], url = NSURL(string:avatarUrl), data = NSData(contentsOfURL: url) {
+              if let avatarUrl = message[Constants.MessageFields.avatarUrl], let url = URL(string:avatarUrl), let data = try? Data(contentsOf: url) {
                 cell.CellLeftImage?.image = UIImage(data: data)
               }
             }
@@ -303,33 +303,33 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   //methods for autosizing table view row height
   //___________________________________________________________________________________________
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableViewAutomaticDimension
   }
   //___________________________________________________________________________________________
-  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableViewAutomaticDimension
   }
 
   //_________________________________________________________________________________________
   //swipe to delete method
   //note this has to be done programmatically. During compilation xcode checks for existence of this method, and if available, enables swipe to delete functionality
-     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
     // swipe to delete message method
-      if editingStyle == .Delete {
+      if editingStyle == .delete {
       
         //following is a cell instance of FIRDataSnapshot
-        let messageToDelete = messages[indexPath.row]
-        let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
+        let messageToDelete = messages[(indexPath as NSIndexPath).row]
+        let messageSnapshot: FIRDataSnapshot! = self.messages[(indexPath as NSIndexPath).row]
         let message = messageSnapshot.value as! Dictionary<String, String>
         
         if message[Constants.MessageFields.imageUrl]! != "" {
         let imageUrl = message[Constants.MessageFields.imageUrl] as String?
         
           //check to see if message has an associated firebase storage image
-            let deletionRef = FIRStorage.storage().referenceForURL(imageUrl! as String)//fails
-            deletionRef.deleteWithCompletion { (error) -> Void in
+            let deletionRef = FIRStorage.storage().reference(forURL: imageUrl! as String)
+            deletionRef.delete { (error) -> Void in
             if (error != nil) {
               print("error")
               } else {
@@ -339,11 +339,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     }
   
       //remove message from firebase database
-      messages.removeAtIndex(indexPath.row)
-      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      messages.remove(at: (indexPath as NSIndexPath).row)
+      tableView.deleteRows(at: [indexPath], with: .fade)
       messageToDelete.ref.removeValue()
       self.scrollToLastRow()
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
       // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view. Not used.
      
       }
@@ -352,15 +352,15 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   //Scroll the table view to last row
   //____________________________________________________________________________________________
   func scrollToLastRow() {
-   let indexPath = NSIndexPath(forRow: messages.count - 1, inSection: 0)
-    self.clientTable.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+   let indexPath = IndexPath(row: messages.count - 1, section: 0)
+    self.clientTable.scrollToRow(at: indexPath, at: .bottom, animated: true)
   }
   
   
   //UITextViewDelegate protocol methods
   //____________________________________________________________________________________________
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     let data = [Constants.MessageFields.text: textField.text! as String]
     let messageType=true
     sendMessage(data, messageType: messageType)//true =text message
@@ -371,7 +371,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   // Send Message to Firebase
   //____________________________________________________________________________________________
-  func sendMessage(data: [String: String], messageType: Bool) {
+  func sendMessage(_ data: [String: String], messageType: Bool) {
     //pass an imageUrl or text message
     //assemble the firebase message
     //this passes either a text or imageUrl
@@ -392,6 +392,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     if let currentLocation = getMessageLocation() {
     mdata[Constants.MessageFields.messageLat] = "\(currentLocation.coordinate.latitude)"
     mdata[Constants.MessageFields.messageLon] = "\(currentLocation.coordinate.longitude)"
+      
+    
+    
     }else{
       print("Location Failure")
     }
@@ -405,6 +408,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       }
       //set imageUrl to empty string
       mdata[Constants.MessageFields.imageUrl] = ""
+      
+      print(mdata[Constants.MessageFields.messageLat])
+      print(mdata[Constants.MessageFields.messageLon])
+      
+      
       self.ref.child("messages").childByAutoId().setValue(mdata)
      
     }else{
@@ -414,6 +422,10 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
       mdata[Constants.MessageFields.text] = ""
       mdata[Constants.MessageFields.avatarUrl] = "" //blank the avatarUrl since the space is used for media
+      
+      print(mdata[Constants.MessageFields.messageLat])
+      print(mdata[Constants.MessageFields.messageLon])
+      
       self.ref.child("messages").childByAutoId().setValue(mdata)
       
        }
@@ -422,24 +434,24 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   // image picker
   //___________________________________________________________________________________________
-  func imagePickerController(picker: UIImagePickerController,
-                             didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [String : Any]) {
     picker.allowsEditing = true
     //picker.showsCameraControls = true
-    picker.dismissViewControllerAnimated(true, completion:nil)
+    picker.dismiss(animated: true, completion:nil)
   
-    if picker.sourceType == .Camera{
+    if picker.sourceType == .camera{
       // Camera Use
       let myimage = info[UIImagePickerControllerOriginalImage] as! UIImage
       let imageData = UIImageJPEGRepresentation(myimage, 0.0)
       let imagePath = FIRAuth.auth()!.currentUser!.uid +
-        "/\(Int64(NSDate.timeIntervalSinceReferenceDate() * 1000))/asset.jpg"
+        "/\(Int64(Date.timeIntervalSinceReferenceDate * 1000))/asset.jpg"
       
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
       print("start image store")
       self.storageRef.child(imagePath)
-        .putData(imageData!, metadata: metadata) { (metadata, error) in
+        .put(imageData!, metadata: metadata) { (metadata, error) in
           if let error = error {
             print("Error uploading: \(error)")
             return
@@ -451,15 +463,15 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     }else{
     
     //This is for photolibrary use, camera cannot be processed this way
-    let referenceUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
-    let assets = PHAsset.fetchAssetsWithALAssetURLs([referenceUrl], options: nil)
+    let referenceUrl = info[UIImagePickerControllerReferenceURL] as! URL
+    let assets = PHAsset.fetchAssets(withALAssetURLs: [referenceUrl], options: nil)
     let asset = assets.firstObject
     
-    asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput, info) in
+    asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
       let imageFileUrl = contentEditingInput?.fullSizeImageURL//displaySizeImage
       //}
       
-      let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(Int64(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
+      let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(Int64(Date.timeIntervalSinceReferenceDate * 1000))/\(referenceUrl.lastPathComponent)"
       
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
@@ -467,8 +479,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
       self.storageRef.child(filePath)
         .putFile(imageFileUrl!, metadata: metadata) { (metadata, error) in
-      if let error = error {
-            print("Error uploading: \(error.description)")
+      if error != nil {
+            //print("Error uploading: \(error)")
+        print("error uploading")
             return
           }
           print("image store complete")
@@ -484,18 +497,18 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
    //___________________________________________________________________________________________
   
-  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion:nil)
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion:nil)
   }
    //___________________________________________________________________________________________
   
-  func showAlert(title:String, message:String) {
-    dispatch_async(dispatch_get_main_queue()) {
+  func showAlert(_ title:String, message:String) {
+    DispatchQueue.main.async {
       let alert = UIAlertController(title: title,
-                                    message: message, preferredStyle: .Alert)
-      let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+                                    message: message, preferredStyle: .alert)
+      let dismissAction = UIAlertAction(title: "Dismiss", style: .destructive, handler: nil)
       alert.addAction(dismissAction)
-      self.presentViewController(alert, animated: true, completion: nil)
+      self.present(alert, animated: true, completion: nil)
     }
   }
   

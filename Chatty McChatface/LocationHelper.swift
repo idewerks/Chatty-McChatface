@@ -22,9 +22,20 @@ func getMessageLocation()->CLLocation! {
   
   var currentLocation: CLLocation!
   
-  if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
-    CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways){
+  if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+    CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+    
+    
+    //I hacked this to make sure location data is valid
+    //need to clean this up
+    //repeat until valid data is present
+    repeat {
     currentLocation = locManager.location
+    } while locManager.location == nil
+    
+    
+    
+    
     locManager.stopUpdatingLocation()
   }else {
   print("Error- Location Authorization Failure")

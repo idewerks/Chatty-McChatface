@@ -14,7 +14,7 @@ class AppState: NSObject {
   //This is for user parameters ONLY
   var signedIn = false
   var displayName: String?
-  var avatarUrl: NSURL?
+  var avatarUrl: URL?
  
   
 }
