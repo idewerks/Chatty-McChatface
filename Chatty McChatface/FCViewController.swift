@@ -40,8 +40,10 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
    //___________________________________________________________________________________________
   @IBAction func didSendMessage(_ sender: UIButton) {
     textFieldShouldReturn(textField)
-    textField.text=""//clear the text box
-    dismissKeyboard() //hide the keyboard
+    //clear the text box
+    textField.text=""
+    //hide the keyboard
+    dismissKeyboard()
      }
    //___________________________________________________________________________________________
   @IBAction func didPressCrash(_ sender: AnyObject) {
@@ -202,9 +204,25 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     self.ref.child("messages").removeObserver(withHandle: _refHandle) //This fixed a bug where table view fired twice on an image add message
     
     //Release the keyboard observers
-  //  NotificationCenter.default.removeObserver( NSNotification.Name.UIKeyboardWillShow)
+    
+    
+    //When starting a seques to mapview, releasing the NSNotification observer throws a hard compiler fault (compiler swift failure)
+    
+    
+    //NotificationCenter.default.removeObserver( NSNotification.Name.UIKeyboardWillShow)
   //  NotificationCenter.default.removeObserver( NSNotification.Name.UIKeyboardWillHide )
-  
+  //NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: Any?.self)
+    
+  /* strated as:
+     NotificationCenter.default.addObserver(self, selector: #selector(FCViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+     NotificationCenter.default.addObserver(self, selector: #selector(FCViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+     
+ 
+ */
+    
+    
+    
+    
   }
   
   
@@ -274,7 +292,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             cell.CellMessageLabel.text="Sent Image"
             cell.CellDateLabel.text = dateSent
            }//end get image from firebase storage
-              
+            print()
             return cell
       //}
              //if not stored in firebase storage, retrieve image from web url
@@ -304,10 +322,12 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   //methods for autosizing table view row height
   //___________________________________________________________________________________________
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //print(UITableViewAutomaticDimension)
     return UITableViewAutomaticDimension
   }
   //___________________________________________________________________________________________
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    //print(UITableViewAutomaticDimension)
     return UITableViewAutomaticDimension
   }
 
@@ -344,7 +364,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       messageToDelete.ref.removeValue()
       self.scrollToLastRow()
         } else if editingStyle == .insert {
-      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view. Not used.
+      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view. Not used here.
      
       }
   }
@@ -475,16 +495,23 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
+      
+      
+      
+      //This takes forever to store an image
       print("start lib image store")
       
-      self.storageRef.child(filePath)
-        .putFile(imageFileUrl!, metadata: metadata) { (metadata, error) in
+      self.storageRef.child(filePath).putFile(imageFileUrl!, metadata: metadata) { (metadata, error) in
       if error != nil {
             //print("Error uploading: \(error)")
         print("error uploading")
             return
-          }
+      }else {
           print("image store complete")
+          
+          }
+          
+          
          // [Constants.MessageFields.text] = ""
           let messageType = false
       self.sendMessage([Constants.MessageFields.imageUrl: self.storageRef.child((metadata?.path)!).description], messageType: messageType)

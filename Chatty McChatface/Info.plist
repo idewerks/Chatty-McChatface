@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;Allow Chatty McChatface to access location always&quot;</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;Allow Chatty McChatface to access location when in use&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -41,7 +37,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>20</string>
 	<key>FacebookAppID</key>
 	<string>637847056363518</string>
 	<key>FacebookDisplayName</key>
@@ -90,9 +86,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>&quot;Chatty McChatface needs access to your camera to allow sending images&quot;</string>
+	<string>"Chatty McChatface needs access to your camera to allow sending images"</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>"Allow Chatty McChatface to access location always"</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>"Allow Chatty McChatface to access location when in use"</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;Chatty McChatface needs access to your photo library to allow sending messages&quot;</string>
+	<string>"Chatty McChatface needs access to your photo library to allow sending messages"</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

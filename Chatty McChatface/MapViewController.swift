@@ -26,6 +26,8 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
       locationManager.desiredAccuracy = kCLLocationAccuracyBest
       locationManager.requestAlwaysAuthorization()
       locationManager.startUpdatingLocation()
+    }else{
+      print("Location Services Disabled")
     }
   }
   
