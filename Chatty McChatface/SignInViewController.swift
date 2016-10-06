@@ -37,11 +37,14 @@ class SignInViewController: UIViewController {
     // Sign In with credentials.
     let email = emailField.text
     let password = passwordField.text
+    SwiftSpinner.show("Authorizing Email-Firebase")
     FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
       if let error = error {
         print(error.localizedDescription)
+        SwiftSpinner.hide()
         return
       }
+      SwiftSpinner.hide()
       self.signedIn(user!)
     }
   }
@@ -49,14 +52,17 @@ class SignInViewController: UIViewController {
   
   
   @IBAction func didTapSignUp(_ sender: AnyObject) {
+    SwiftSpinner.show("Creating Firebase email account")
     let email = emailField.text
     let password = passwordField.text
     FIRAuth.auth()?.createUser(withEmail: email!, password: password!) { (user, error) in
       if let error = error {
         print(error.localizedDescription)
+        SwiftSpinner.hide()
         return
       }
       self.setDisplayName(user!)
+      SwiftSpinner.hide()
     }
   }
   
@@ -105,7 +111,7 @@ class SignInViewController: UIViewController {
   
  
   @IBAction func TwitterLoginButton(_ sender: AnyObject) {
-    
+    SwiftSpinner.show("Authorizing Twitter-Firebase")
     Twitter.sharedInstance().logIn { session, error in
       if (session != nil) {
         print("signed in as \(session!.userName)")
@@ -115,13 +121,15 @@ class SignInViewController: UIViewController {
           
           if (user != nil){
            self.signedIn(FIRAuth.auth()?.currentUser)
-            
+           SwiftSpinner.hide()
           }else{
            print("user nil error: \(error!.localizedDescription)")
+           SwiftSpinner.hide()
           }
         }
       
       } else {
+        SwiftSpinner.hide()
         print("session error: \(error!.localizedDescription)")
       }
     }

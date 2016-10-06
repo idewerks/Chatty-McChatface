@@ -30,7 +30,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   //class Parameters
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
-  var msglength: NSNumber = 25
+  var msglength: NSNumber = 250
   fileprivate var _refHandle: FIRDatabaseHandle!
   var storageRef: FIRStorageReference!
   var remoteConfig: FIRRemoteConfig!
@@ -99,8 +99,10 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     loadAd()
     
     // set up chat view table view autosize
-    self.clientTable.estimatedRowHeight = 40
+    
     self.clientTable.rowHeight = UITableViewAutomaticDimension
+    self.clientTable.estimatedRowHeight = 85
+    
     
     configureStorage()
     //self.messages.removeAll()
@@ -285,7 +287,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
                   print("Error downloading: \(error)")
                   return
                   }
-              print("image recieved")
+              print("image received")
             //This fires when download of image is complete
             cell.CellLeftImage?.image = UIImage.init(data: data!)
             cell.CellTitleLabel.text = name
@@ -368,6 +370,15 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
      
       }
   }
+ 
+  
+  
+// func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+  //  
+//  }
+  
+  
+  
   
   //Scroll the table view to last row
   //____________________________________________________________________________________________
@@ -382,6 +393,8 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     let data = [Constants.MessageFields.text: textField.text! as String]
+    print("data passed to SendMessage:")
+    print(data)
     let messageType=true
     sendMessage(data, messageType: messageType)//true =text message
     //print (data)
@@ -470,14 +483,17 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
       print("start image store")
+      SwiftSpinner.show("uploading camera image")
       self.storageRef.child(imagePath)
         .put(imageData!, metadata: metadata) { (metadata, error) in
           if let error = error {
             print("Error uploading: \(error)")
+            SwiftSpinner.hide()
             return
           }
           let messageType = false
           self.sendMessage([Constants.MessageFields.imageUrl: self.storageRef.child((metadata?.path)!).description], messageType: messageType)
+          SwiftSpinner.hide()
       }
     
     }else{
@@ -500,16 +516,18 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       
       //This takes forever to store an image
       print("start lib image store")
+      SwiftSpinner.show("uploading camera image")
       
       self.storageRef.child(filePath).putFile(imageFileUrl!, metadata: metadata) { (metadata, error) in
       if error != nil {
             //print("Error uploading: \(error)")
         print("error uploading")
-            return
+        SwiftSpinner.hide()
+        return
       }else {
           print("image store complete")
-          
-          }
+          SwiftSpinner.hide()
+        }
           
           
          // [Constants.MessageFields.text] = ""

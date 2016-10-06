@@ -13,6 +13,7 @@
 		841922281CFE75E900B9ED17 /* FCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841922271CFE75E900B9ED17 /* FCViewController.swift */; };
 		8419222E1CFE7F3900B9ED17 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */; };
 		841AA8FB1D9216C200DF7E62 /* MessagesTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AA8FA1D9216C200DF7E62 /* MessagesTabController.swift */; };
+		8425CCD81DA3FCA6001FFAA6 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425CCD71DA3FCA6001FFAA6 /* SwiftSpinner.swift */; };
 		845F58D01D99FAB600345ACD /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F58CF1D99FAB600345ACD /* MessageCell.swift */; };
 		845F58D21D99FB3800345ACD /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F58D11D99FB3800345ACD /* MeasurementHelper.swift */; };
 		84AED8281CFE6F0F008909F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED8271CFE6F0F008909F3 /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 		841922271CFE75E900B9ED17 /* FCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCViewController.swift; sourceTree = "<group>"; };
 		8419222D1CFE7F3900B9ED17 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		841AA8FA1D9216C200DF7E62 /* MessagesTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTabController.swift; sourceTree = "<group>"; };
+		8425CCD71DA3FCA6001FFAA6 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		845F58CF1D99FAB600345ACD /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		845F58D11D99FB3800345ACD /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
 		8498B2C51DA05304009B139D /* Chatty McChatface.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Chatty McChatface.entitlements"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				84AED8331CFE6F0F008909F3 /* Info.plist */,
 				845F58CF1D99FAB600345ACD /* MessageCell.swift */,
 				845F58D11D99FB3800345ACD /* MeasurementHelper.swift */,
+				8425CCD71DA3FCA6001FFAA6 /* SwiftSpinner.swift */,
 			);
 			path = "Chatty McChatface";
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				841AA8FB1D9216C200DF7E62 /* MessagesTabController.swift in Sources */,
 				84FA5A171D01B136006D5E1F /* Utilities.swift in Sources */,
 				84FB3CBC1D88608B002745D8 /* LocationHelper.swift in Sources */,
+				8425CCD81DA3FCA6001FFAA6 /* SwiftSpinner.swift in Sources */,
 				84D67B171D389924004CF84E /* MapViewController.swift in Sources */,
 				84AED8561CFE6FD8008909F3 /* SignInViewController.swift in Sources */,
 				845F58D21D99FB3800345ACD /* MeasurementHelper.swift in Sources */,
