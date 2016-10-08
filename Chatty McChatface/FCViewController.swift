@@ -169,7 +169,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
   override func viewWillAppear(_ animated: Bool) {
     
-    self.clientTable.estimatedRowHeight = 40
+    self.clientTable.estimatedRowHeight = 100
     self.clientTable.rowHeight = UITableViewAutomaticDimension
     self.messages.removeAll()
     self.clientTable.reloadData()    // reloads the table view

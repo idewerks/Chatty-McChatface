@@ -16,6 +16,7 @@
 		8425CCD81DA3FCA6001FFAA6 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425CCD71DA3FCA6001FFAA6 /* SwiftSpinner.swift */; };
 		845F58D01D99FAB600345ACD /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F58CF1D99FAB600345ACD /* MessageCell.swift */; };
 		845F58D21D99FB3800345ACD /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F58D11D99FB3800345ACD /* MeasurementHelper.swift */; };
+		8491742A1DA5ECC400DAE9C6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849174291DA5ECC400DAE9C6 /* WebViewController.swift */; };
 		84AED8281CFE6F0F008909F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AED8271CFE6F0F008909F3 /* AppDelegate.swift */; };
 		84AED82F1CFE6F0F008909F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AED82E1CFE6F0F008909F3 /* Assets.xcassets */; };
 		84AED8321CFE6F0F008909F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AED8301CFE6F0F008909F3 /* LaunchScreen.storyboard */; };
@@ -58,6 +59,7 @@
 		8425CCD71DA3FCA6001FFAA6 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		845F58CF1D99FAB600345ACD /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		845F58D11D99FB3800345ACD /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
+		849174291DA5ECC400DAE9C6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8498B2C51DA05304009B139D /* Chatty McChatface.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Chatty McChatface.entitlements"; sourceTree = "<group>"; };
 		84AED8241CFE6F0F008909F3 /* Chatty McChatface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty McChatface.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AED8271CFE6F0F008909F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				845F58CF1D99FAB600345ACD /* MessageCell.swift */,
 				845F58D11D99FB3800345ACD /* MeasurementHelper.swift */,
 				8425CCD71DA3FCA6001FFAA6 /* SwiftSpinner.swift */,
+				849174291DA5ECC400DAE9C6 /* WebViewController.swift */,
 			);
 			path = "Chatty McChatface";
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				845F58D21D99FB3800345ACD /* MeasurementHelper.swift in Sources */,
 				84AED8281CFE6F0F008909F3 /* AppDelegate.swift in Sources */,
 				841922281CFE75E900B9ED17 /* FCViewController.swift in Sources */,
+				8491742A1DA5ECC400DAE9C6 /* WebViewController.swift in Sources */,
 				8419221E1CFE733C00B9ED17 /* Appstate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
