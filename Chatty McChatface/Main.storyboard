@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bqo-tI-KbX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OTh-0Q-7iK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDo-1s-Eg5">
@@ -141,7 +141,7 @@
                         <viewControllerLayoutGuide type="bottom" id="X8X-0F-Bdi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4Dk-Kp-xdq" userLabel="Root">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-Ou-qfp" userLabel="Header">
@@ -240,14 +240,14 @@
                                     <action selector="didTapAddPhoto:" destination="uMT-A3-F60" eventType="touchUpInside" id="vaN-73-ycr"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-HU-kCB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-HU-kCB">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="61" id="f9j-WJ-CnU" customClass="MessageCell" customModule="Chatty_McChatface" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="382" height="61"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="48" id="f9j-WJ-CnU" customClass="MessageCell" customModule="Chatty_McChatface" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="351" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="f9j-WJ-CnU" id="6Nv-bs-fSR">
-                                            <frame key="frameInset" width="382" height="60.666666666666664"/>
+                                            <frame key="frameInset" width="351" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INx-Jc-1nD">
@@ -265,7 +265,7 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="301" translatesAutoresizingMaskIntoConstraints="NO" id="Ije-W1-sPJ"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="301" translatesAutoresizingMaskIntoConstraints="NO" id="Ije-W1-sPJ"/>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qiz-cW-Znb">
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" none="YES"/>
@@ -288,7 +288,7 @@
                                                         <fragment content="CellMessageText ">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -297,20 +297,20 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="3" id="D29-Hq-ISN"/>
+                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="2" id="D29-Hq-ISN"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Ije-W1-sPJ" secondAttribute="bottom" priority="250" constant="8" id="DQ7-hX-dMA"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="4" id="Er3-TZ-Koa"/>
-                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="106" id="SCu-rn-C2e"/>
+                                                <constraint firstItem="INx-Jc-1nD" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="68" id="SCu-rn-C2e"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" id="WU7-mb-2bT"/>
-                                                <constraint firstAttribute="trailing" secondItem="Qiz-cW-Znb" secondAttribute="trailing" id="XDA-kY-KFt"/>
-                                                <constraint firstItem="McS-zO-nWA" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" constant="98" id="Yck-VP-pye"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="312" id="bNR-Ak-A54"/>
-                                                <constraint firstItem="Qiz-cW-Znb" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="4" id="iNi-4e-W9T"/>
-                                                <constraint firstItem="Qiz-cW-Znb" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="250" id="lTd-p0-4DT"/>
-                                                <constraint firstItem="McS-zO-nWA" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="topMargin" constant="16" id="o0l-7c-5gg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="McS-zO-nWA" secondAttribute="trailing" constant="79.333333333333314" id="rrf-KE-rVg"/>
-                                                <constraint firstAttribute="trailing" secondItem="INx-Jc-1nD" secondAttribute="trailing" constant="97" id="usJ-xR-guy"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="15.666666666666664" id="zWE-av-HsE"/>
+                                                <constraint firstAttribute="trailing" secondItem="Qiz-cW-Znb" secondAttribute="trailing" constant="34" id="XDA-kY-KFt"/>
+                                                <constraint firstItem="McS-zO-nWA" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" constant="60" id="Yck-VP-pye"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="299" id="bNR-Ak-A54"/>
+                                                <constraint firstItem="Qiz-cW-Znb" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="2" id="iNi-4e-W9T"/>
+                                                <constraint firstItem="Qiz-cW-Znb" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="162" id="lTd-p0-4DT"/>
+                                                <constraint firstItem="McS-zO-nWA" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="topMargin" constant="12" id="o0l-7c-5gg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="McS-zO-nWA" secondAttribute="trailing" constant="53" id="rrf-KE-rVg"/>
+                                                <constraint firstAttribute="trailing" secondItem="INx-Jc-1nD" secondAttribute="trailing" constant="135" id="usJ-xR-guy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="7" id="zWE-av-HsE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -358,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLT-eE-jeg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1131.8840579710145" y="-180.16304347826087"/>
+            <point key="canvasLocation" x="1130.4000000000001" y="-180.35982008995504"/>
         </scene>
         <!--Map-->
         <scene sceneID="Vjg-LW-6Xa">
@@ -369,7 +369,7 @@
                         <viewControllerLayoutGuide type="bottom" id="i7H-7e-Co9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wbe-gT-SBO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLA-Vu-aU5">
@@ -398,7 +398,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Nhu-LI-b4c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l9L-mF-auN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8U-qH-kqC">
