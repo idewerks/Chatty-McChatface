@@ -13,6 +13,8 @@ import UIKit
 //custom tableview cell
 class MessageCell: UITableViewCell {
   
+
+  @IBOutlet weak var CellMediaImage: UIImageView!
   
   @IBOutlet weak var CellTitleLabel: UILabel!
   @IBOutlet weak var CellLeftImage: UIImageView!

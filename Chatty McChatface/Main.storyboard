@@ -240,14 +240,14 @@
                                     <action selector="didTapAddPhoto:" destination="uMT-A3-F60" eventType="touchUpInside" id="vaN-73-ycr"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-HU-kCB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-HU-kCB">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="48" id="f9j-WJ-CnU" customClass="MessageCell" customModule="Chatty_McChatface" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="351" height="48"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="114" id="f9j-WJ-CnU" customClass="MessageCell" customModule="Chatty_McChatface" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="351" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="f9j-WJ-CnU" id="6Nv-bs-fSR">
-                                            <frame key="frameInset" width="351" height="47"/>
+                                            <frame key="frameInset" width="351" height="113"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INx-Jc-1nD">
@@ -295,27 +295,33 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IUm-qz-Q2s"/>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="leading" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="60" id="CDH-jG-IBy"/>
                                                 <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="2" id="D29-Hq-ISN"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ije-W1-sPJ" secondAttribute="bottom" priority="250" constant="8" id="DQ7-hX-dMA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ije-W1-sPJ" secondAttribute="bottom" priority="250" constant="61.5" id="DQ7-hX-dMA"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="4" id="Er3-TZ-Koa"/>
                                                 <constraint firstItem="INx-Jc-1nD" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="68" id="SCu-rn-C2e"/>
+                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="bottom" secondItem="6Nv-bs-fSR" secondAttribute="bottomMargin" priority="750" constant="-40" id="T2Y-rH-l10"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" id="WU7-mb-2bT"/>
                                                 <constraint firstAttribute="trailing" secondItem="Qiz-cW-Znb" secondAttribute="trailing" constant="34" id="XDA-kY-KFt"/>
                                                 <constraint firstItem="McS-zO-nWA" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" constant="60" id="Yck-VP-pye"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="299" id="bNR-Ak-A54"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="293" id="bNR-Ak-A54"/>
                                                 <constraint firstItem="Qiz-cW-Znb" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="2" id="iNi-4e-W9T"/>
                                                 <constraint firstItem="Qiz-cW-Znb" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="162" id="lTd-p0-4DT"/>
                                                 <constraint firstItem="McS-zO-nWA" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="topMargin" constant="12" id="o0l-7c-5gg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IUm-qz-Q2s" secondAttribute="trailing" constant="110" id="oiP-27-xIu"/>
+                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="top" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="3.5" id="qOX-Pw-7Iv"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="McS-zO-nWA" secondAttribute="trailing" constant="53" id="rrf-KE-rVg"/>
                                                 <constraint firstAttribute="trailing" secondItem="INx-Jc-1nD" secondAttribute="trailing" constant="135" id="usJ-xR-guy"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="7" id="zWE-av-HsE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="76.5" id="zWE-av-HsE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="CellDateLabel" destination="Qiz-cW-Znb" id="3JP-Xd-6lO"/>
                                             <outlet property="CellLeftImage" destination="Ije-W1-sPJ" id="WvP-sG-TPW"/>
+                                            <outlet property="CellMediaImage" destination="IUm-qz-Q2s" id="2gr-p7-b8g"/>
                                             <outlet property="CellMessageLabel" destination="McS-zO-nWA" id="MST-f4-0YL"/>
                                             <outlet property="CellTitleLabel" destination="INx-Jc-1nD" id="hCj-14-PN2"/>
                                         </connections>
@@ -373,7 +379,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLA-Vu-aU5">
-                                <frame key="frameInset" minX="20" minY="50" width="374" height="586"/>
+                                <frame key="frameInset" minX="20" minY="56" width="339" height="487"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </mapView>
@@ -387,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z42-p3-A9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1133.3333333333335" y="575.54347826086962"/>
+            <point key="canvasLocation" x="1132" y="575.26236881559225"/>
         </scene>
         <!--Web-->
         <scene sceneID="PA7-QW-RDd">
@@ -413,7 +419,7 @@
                             <constraint firstItem="m8U-qH-kqC" firstAttribute="leading" secondItem="l9L-mF-auN" secondAttribute="leadingMargin" constant="20" id="yMK-4N-0Qi"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="8NF-gj-NQu"/>
+                    <tabBarItem key="tabBarItem" title="Web" selectedImage="globe_filled" id="8NF-gj-NQu"/>
                     <connections>
                         <outlet property="IDWebView" destination="m8U-qH-kqC" id="T45-iw-ZWT"/>
                     </connections>

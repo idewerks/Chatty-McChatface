@@ -105,6 +105,11 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     
     
     configureStorage()
+    
+    
+    
+    
+    
     //self.messages.removeAll()
     //self.clientTable.reloadData()
     
@@ -289,7 +294,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
                   }
               print("image received")
             //This fires when download of image is complete
-            cell.CellLeftImage?.image = UIImage.init(data: data!)
+            cell.CellMediaImage?.image = UIImage.init(data: data!)
             cell.CellTitleLabel.text = name
             cell.CellMessageLabel.text="Sent Image"
             cell.CellDateLabel.text = dateSent
@@ -300,7 +305,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
              //if not stored in firebase storage, retrieve image from web url
             } else
               if let url = URL(string:imageUrl!), let data = try? Data(contentsOf: url) {
-                cell.CellLeftImage?.image = UIImage.init(data: data)
+                cell.CellMediaImage?.image = UIImage.init(data: data)
             }
                 cell.CellTitleLabel.text = name
                 cell.CellMessageLabel.text = "media message"
@@ -314,7 +319,30 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
               cell.CellLeftImage?.image = UIImage(named: "ic_account_circle")
               cell.CellDateLabel.text = dateSent
               if let avatarUrl = message[Constants.MessageFields.avatarUrl], let url = URL(string:avatarUrl), let data = try? Data(contentsOf: url) {
+                //avatar exists, round mask the avatar image
+                //let newImage:UIImage =
+                
+                //start rewrite
+                let avatarImage:UIImage = UIImage(data: data)!
+                //get the radius from the UIImageView
+                let radius = Double(cell.CellLeftImage.frame.height)/2
+                cell.CellLeftImage.image = maskRoundedImage(image: avatarImage, radius: Float(radius))
+                
+                
+                
+                /*
                 cell.CellLeftImage?.image = UIImage(data: data)
+                
+                let radius = Double(cell.CellLeftImage.frame.height)/2
+                
+                
+                var newimage:UIImage
+                newimage=maskRoundedImage(image: cell.CellLeftImage.image!, radius: Float(radius))
+                //cell.CellLeftImage.image = maskRoundedImage(image: UIImage(data: data)!, radius: Float)
+                cell.CellLeftImage.image = newimage
+                */
+                
+                cell.CellMediaImage?.image = nil
               }
             }
 
