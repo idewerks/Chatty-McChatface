@@ -296,7 +296,8 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
             //This fires when download of image is complete
             cell.CellMediaImage?.image = UIImage.init(data: data!)
             cell.CellTitleLabel.text = name
-            cell.CellMessageLabel.text="Sent Image"
+            //cell.CellMessageLabel.text="Sent Image"
+            cell.CellMessageLabel.text = message[Constants.MessageFields.text] as String!
             cell.CellDateLabel.text = dateSent
            }//end get image from firebase storage
             print()
@@ -308,7 +309,7 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
                 cell.CellMediaImage?.image = UIImage.init(data: data)
             }
                 cell.CellTitleLabel.text = name
-                cell.CellMessageLabel.text = "media message"
+                cell.CellMessageLabel.text = message[Constants.MessageFields.text] as String!
       
               } else {
               //if no imageUrl field in message, treat it as a text message:
@@ -503,7 +504,26 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
   
     if picker.sourceType == .camera{
       // Camera Use
-      let myimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+      
+      //this needs to be tested !
+      //------------------------------------------------------------
+      
+      var myimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+      
+      // rescale the photo
+      let mediaScaleSize=CGSize(width: 200, height: 200)
+      //mediaScaleSize.width = 400
+      //mediaScaleSize.height = 400
+      //resize
+      let resizedImage = ResizeImage(image: myimage, targetSize: mediaScaleSize)
+      
+      myimage = resizedImage  //restore myimage- not very elegant, needs some refactoring
+      //-------------------------------------------------------------
+      
+      
+      
+      
+      
       let imageData = UIImageJPEGRepresentation(myimage, 0.0)
       let imagePath = FIRAuth.auth()!.currentUser!.uid +
         "/\(Int64(Date.timeIntervalSinceReferenceDate * 1000))/asset.jpg"

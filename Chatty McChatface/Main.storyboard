@@ -240,14 +240,14 @@
                                     <action selector="didTapAddPhoto:" destination="uMT-A3-F60" eventType="touchUpInside" id="vaN-73-ycr"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-HU-kCB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-HU-kCB">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="114" id="f9j-WJ-CnU" customClass="MessageCell" customModule="Chatty_McChatface" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="351" height="114"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="59" id="f9j-WJ-CnU" customClass="MessageCell" customModule="Chatty_McChatface" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="351" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="f9j-WJ-CnU" id="6Nv-bs-fSR">
-                                            <frame key="frameInset" width="351" height="113"/>
+                                            <frame key="frameInset" width="351" height="58.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INx-Jc-1nD">
@@ -298,24 +298,24 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IUm-qz-Q2s"/>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="leading" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="60" id="CDH-jG-IBy"/>
+                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="leading" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="10" id="CDH-jG-IBy"/>
                                                 <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="2" id="D29-Hq-ISN"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ije-W1-sPJ" secondAttribute="bottom" priority="250" constant="61.5" id="DQ7-hX-dMA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ije-W1-sPJ" secondAttribute="bottom" priority="250" constant="6" id="DQ7-hX-dMA"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="4" id="Er3-TZ-Koa"/>
                                                 <constraint firstItem="INx-Jc-1nD" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="68" id="SCu-rn-C2e"/>
-                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="bottom" secondItem="6Nv-bs-fSR" secondAttribute="bottomMargin" priority="750" constant="-40" id="T2Y-rH-l10"/>
+                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="bottom" secondItem="6Nv-bs-fSR" secondAttribute="bottomMargin" priority="750" constant="-3" id="T2Y-rH-l10"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" id="WU7-mb-2bT"/>
                                                 <constraint firstAttribute="trailing" secondItem="Qiz-cW-Znb" secondAttribute="trailing" constant="34" id="XDA-kY-KFt"/>
                                                 <constraint firstItem="McS-zO-nWA" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" constant="60" id="Yck-VP-pye"/>
+                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="top" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="1" id="aC8-Nt-aTh"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="293" id="bNR-Ak-A54"/>
                                                 <constraint firstItem="Qiz-cW-Znb" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="2" id="iNi-4e-W9T"/>
                                                 <constraint firstItem="Qiz-cW-Znb" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="162" id="lTd-p0-4DT"/>
                                                 <constraint firstItem="McS-zO-nWA" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="topMargin" constant="12" id="o0l-7c-5gg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="IUm-qz-Q2s" secondAttribute="trailing" constant="110" id="oiP-27-xIu"/>
-                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="top" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="3.5" id="qOX-Pw-7Iv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IUm-qz-Q2s" secondAttribute="trailing" constant="160" id="oiP-27-xIu"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="McS-zO-nWA" secondAttribute="trailing" constant="53" id="rrf-KE-rVg"/>
                                                 <constraint firstAttribute="trailing" secondItem="INx-Jc-1nD" secondAttribute="trailing" constant="135" id="usJ-xR-guy"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="76.5" id="zWE-av-HsE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="McS-zO-nWA" secondAttribute="bottom" constant="21" id="zWE-av-HsE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
