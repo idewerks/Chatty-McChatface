@@ -247,7 +247,7 @@
                                         <rect key="frame" x="0.0" y="22" width="351" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="f9j-WJ-CnU" id="6Nv-bs-fSR">
-                                            <frame key="frameInset" width="351" height="58.5"/>
+                                            <frame key="frameInset" width="351" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INx-Jc-1nD">
@@ -295,15 +295,15 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IUm-qz-Q2s"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IUm-qz-Q2s"/>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="leading" secondItem="Ije-W1-sPJ" secondAttribute="trailing" constant="10" id="CDH-jG-IBy"/>
                                                 <constraint firstItem="INx-Jc-1nD" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="2" id="D29-Hq-ISN"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Ije-W1-sPJ" secondAttribute="bottom" priority="250" constant="6" id="DQ7-hX-dMA"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="top" secondItem="6Nv-bs-fSR" secondAttribute="top" constant="4" id="Er3-TZ-Koa"/>
+                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" constant="60" id="N3A-ki-ihy"/>
                                                 <constraint firstItem="INx-Jc-1nD" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leading" constant="68" id="SCu-rn-C2e"/>
-                                                <constraint firstItem="IUm-qz-Q2s" firstAttribute="bottom" secondItem="6Nv-bs-fSR" secondAttribute="bottomMargin" priority="750" constant="-3" id="T2Y-rH-l10"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="IUm-qz-Q2s" secondAttribute="bottom" constant="3" id="T2Y-rH-l10"/>
                                                 <constraint firstItem="Ije-W1-sPJ" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" id="WU7-mb-2bT"/>
                                                 <constraint firstAttribute="trailing" secondItem="Qiz-cW-Znb" secondAttribute="trailing" constant="34" id="XDA-kY-KFt"/>
                                                 <constraint firstItem="McS-zO-nWA" firstAttribute="leading" secondItem="6Nv-bs-fSR" secondAttribute="leadingMargin" constant="60" id="Yck-VP-pye"/>

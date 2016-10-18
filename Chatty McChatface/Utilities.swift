@@ -27,7 +27,7 @@ extension UIViewController {
   }
 }
 //------------------------------------------
-//get current date, format it, and return a formatted date string to the caller
+//get current date, format it, and return a formatted date string to the caller. Returns a date string to the calling method.
 
 func StringDate()->String {
   //returns the current date as string
@@ -39,6 +39,7 @@ func StringDate()->String {
 }
 
 
+//This function creates a circular masked image. Parameters are the original unmasked image & the new mask radius. This radius is calculated in the calling method. This is calculated by using the original imageView frame height/2 to set the clip boundaries. Sample for the calling method is let radius = Double(cell.CellLeftImage.frame.height)/2. In this case a forced cast to Double is needed for the mask function. Returns a UIImage circular masked to those boundaries.
 
 func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
   let imageView: UIImageView = UIImageView(image: image)
@@ -55,6 +56,10 @@ func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
   
   return roundedImage!
 }
+
+
+
+//This function resizes a uiimage. Parameters are the original image and a CGSize struct containing width & height for the new image. Returns a resized UIImage. There seems to be an issue with this method with regards to auto layout in the table view- table view cell doesnt size properly
 
 func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
   let size = image.size
@@ -73,7 +78,7 @@ func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
   // This is the rect that we've calculated out and this is what is actually used below
   let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
   
-  // Actually do the resizing to the rect using the ImageContext stuff
+  // Actually do the resizing to the rect using the ImageContext
   UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
   image.draw(in: rect)
   let newImage = UIGraphicsGetImageFromCurrentImageContext()

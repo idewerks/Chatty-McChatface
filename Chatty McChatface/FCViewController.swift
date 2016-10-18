@@ -511,9 +511,9 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
       var myimage = info[UIImagePickerControllerOriginalImage] as! UIImage
       
       // rescale the photo
-      let mediaScaleSize=CGSize(width: 200, height: 200)
-      //mediaScaleSize.width = 400
-      //mediaScaleSize.height = 400
+      var mediaScaleSize=CGSize(width: 1500, height: 1500)
+      mediaScaleSize.width = 1500
+      mediaScaleSize.height = 1500
       //resize
       let resizedImage = ResizeImage(image: myimage, targetSize: mediaScaleSize)
       
@@ -546,8 +546,23 @@ UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDele
     
     }else{
     
+      
+      
+      
+      
+      
+      
+      
+      
+      
     //This is for photolibrary use, camera cannot be processed this way
     let referenceUrl = info[UIImagePickerControllerReferenceURL] as! URL
+      
+      
+      
+      
+      
+      
     let assets = PHAsset.fetchAssets(withALAssetURLs: [referenceUrl], options: nil)
     let asset = assets.firstObject
     
